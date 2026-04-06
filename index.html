@@ -4,144 +4,133 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Unarchive — Write the Book God Called You to Write</title>
-  <meta name="description" content="The AI writing tool built for authors with something to say. Write your book in hours, not years." />
+  <meta name="description" content="Unarchive is a 7-stage AI book-writing system for Christian leaders, pastors, and believers with a testimony. Write your manuscript in hours, not years." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Mono:wght@400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
   <style>
     /* ─── RESET ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
-    /* ─── CUSTOM PROPERTIES ─── */
+    /* ─── VARIABLES ─── */
     :root {
-      --ink:       #080706;
-      --paper:     #F2EDE4;
-      --gold:      #B8975A;
-      --gold-dim:  rgba(184,151,90,0.12);
-      --cream:     #EDE7DA;
-      --body:      rgba(237,231,218,0.55);
-      --subtle:    rgba(237,231,218,0.25);
-      --border:    rgba(237,231,218,0.08);
-      --border-md: rgba(237,231,218,0.14);
-      --max-w:     1160px;
-      --px:        80px;
+      --bg:           #F7F3ED;
+      --bg-inset:     #EEE9E1;
+      --bg-dark:      #0E0C0B;
+      --bg-card:      #FFFFFF;
+      --ink:          #0E0C0B;
+      --ink-mid:      rgba(14,12,11,0.58);
+      --ink-dim:      rgba(14,12,11,0.35);
+      --dark-cream:   #F0EBE1;
+      --dark-mid:     rgba(240,235,225,0.55);
+      --dark-dim:     rgba(240,235,225,0.28);
+      --gold:         #B8915A;
+      --gold-light:   #C9A870;
+      --gold-dim:     rgba(184,145,90,0.12);
+      --gold-border:  rgba(184,145,90,0.30);
+      --rule:         rgba(14,12,11,0.10);
+      --rule-mid:     rgba(14,12,11,0.16);
+      --rule-dark:    rgba(240,235,225,0.08);
     }
-    @media (max-width: 768px) { :root { --px: 24px; } }
 
     /* ─── BASE ─── */
     body {
-      background: var(--ink);
-      color: var(--cream);
-      font-family: 'Instrument Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
       font-size: 16px;
-      line-height: 1.75;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    /* ─── GRAIN OVERLAY ─── */
+    /* Dot grid background */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      z-index: 9999;
+      background-image: radial-gradient(circle, rgba(14,12,11,0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
       pointer-events: none;
-      opacity: 0.035;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      background-repeat: repeat;
+      z-index: 0;
     }
 
-    /* ─── TYPOGRAPHY UTILITIES ─── */
+    /* ─── LAYOUT ─── */
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 72px;
+      position: relative;
+    }
+    .wrap-narrow {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 72px;
+      position: relative;
+    }
+    section { padding: 140px 0; position: relative; z-index: 1; }
+    section.tight { padding: 96px 0; }
+    .section-rule { width: 100%; height: 1px; background: var(--rule); }
+
+    /* ─── TYPOGRAPHY UTILS ─── */
     .eyebrow {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Geist Mono', monospace;
       font-size: 10px;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.20em;
       text-transform: uppercase;
       color: var(--gold);
       display: block;
+      margin-bottom: 20px;
     }
-    .headline {
-      font-family: 'Playfair Display', serif;
-      line-height: 1.0;
-      color: var(--cream);
-    }
-    .body-text {
-      font-family: 'Instrument Sans', sans-serif;
-      color: var(--body);
-      line-height: 1.75;
-    }
-    em, i { font-family: 'Playfair Display', serif; font-style: italic; }
-
-    /* ─── LAYOUT ─── */
-    .container {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding-left: var(--px);
-      padding-right: var(--px);
-    }
-    .section-padding { padding-top: 160px; padding-bottom: 160px; }
-    .divider { border: none; border-top: 1px solid var(--border); }
-    .divider-md { border: none; border-top: 1px solid var(--border-md); }
-
-    /* ─── REVEAL ANIMATIONS ─── */
-    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-fast { opacity: 0; transform: translateY(20px); transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1); }
-    .reveal-fast.visible { opacity: 1; transform: translateY(0); }
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
-    .delay-4 { transition-delay: 0.4s; }
-    .delay-5 { transition-delay: 0.5s; }
-    .delay-6 { transition-delay: 0.6s; }
-    .delay-7 { transition-delay: 0.7s; }
-
-    /* Word-split headlines */
-    .split-word { display: inline-block; opacity: 0; transform: translateY(40px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
-    .split-word.visible { opacity: 1; transform: translateY(0); }
 
     /* ─── NAV ─── */
-    #nav {
+    nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 1000;
-      padding: 24px var(--px);
+      z-index: 100;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    nav .wrap {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: background 0.4s ease, backdrop-filter 0.4s ease;
+      width: 100%;
     }
-    #nav.scrolled {
-      background: rgba(8,7,6,0.9);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+    nav.scrolled {
+      background: rgba(247,243,237,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--rule);
     }
     .nav-logo {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Fraunces', serif;
       font-style: italic;
+      font-weight: 400;
       font-size: 20px;
-      color: var(--cream);
+      color: var(--ink);
       text-decoration: none;
     }
-    .nav-cta {
-      font-family: 'Instrument Sans', sans-serif;
-      font-size: 14px;
+    .nav-btn {
+      font-family: 'Geist', sans-serif;
       font-weight: 500;
-      color: var(--cream);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--bg);
+      background: var(--ink);
+      padding: 9px 20px;
+      border-radius: 3px;
       text-decoration: none;
-      position: relative;
-      padding-bottom: 2px;
+      transition: background 0.2s;
     }
-    .nav-cta::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 100%;
-      height: 1px;
-      background: var(--cream);
-      transition: right 0.3s cubic-bezier(0.16,1,0.3,1);
-    }
-    .nav-cta:hover::after { right: 0; }
+    .nav-btn:hover { background: var(--gold); }
 
     /* ─── HERO ─── */
     #hero {
@@ -151,668 +140,968 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 140px var(--px) 100px;
-      position: relative;
-      overflow: hidden;
+      padding-top: 64px;
+      padding-bottom: 0;
     }
-    #hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 45%, rgba(184,151,90,0.06) 0%, transparent 70%);
-      pointer-events: none;
+    .hero-eyebrow {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0;
     }
-    #hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 50%, rgba(8,7,6,0.6) 100%);
-      pointer-events: none;
-    }
-    .hero-content { position: relative; z-index: 1; }
-    .hero-eyebrow { margin-bottom: 32px; }
     .hero-headline {
-      font-size: clamp(64px, 8vw, 120px);
-      line-height: 0.97;
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'opsz' 144;
+      font-weight: 300;
+      font-size: clamp(68px, 9.5vw, 120px);
+      line-height: 0.93;
+      color: var(--ink);
+      text-align: center;
+      max-width: 860px;
+      margin: 20px auto 0;
       letter-spacing: -0.02em;
-      margin-bottom: 32px;
     }
-    .hero-headline .italic-line {
+    .hero-headline em {
       font-style: italic;
-      color: rgba(237,231,218,0.8);
+      color: var(--gold);
+    }
+    .hero-vline {
+      width: 1px;
+      height: 52px;
+      background: var(--rule-mid);
+      margin: 32px auto;
     }
     .hero-subhead {
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
       font-size: 18px;
-      max-width: 480px;
-      margin: 0 auto 48px;
-      color: var(--body);
+      line-height: 1.72;
+      color: var(--ink-mid);
+      max-width: 440px;
+      margin: 0 auto;
     }
-    .hero-cta-group { margin-bottom: 56px; }
-    .gold-link {
-      font-family: 'Instrument Sans', sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--gold);
-      text-decoration: none;
-      position: relative;
-      padding-bottom: 3px;
+    .hero-cta {
+      margin-top: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .btn-gold {
       display: inline-block;
-    }
-    .gold-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 1px;
+      font-family: 'Geist', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      color: #fff;
       background: var(--gold);
-      opacity: 0.6;
-      transition: opacity 0.3s ease;
+      padding: 14px 32px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
     }
-    .gold-link:hover::after { opacity: 1; }
-    .hero-price-note {
-      display: block;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      color: var(--subtle);
-      margin-top: 10px;
-    }
-    .hero-divider {
-      width: 100%;
-      max-width: 760px;
-      border: none;
-      border-top: 1px solid var(--border);
-      margin-bottom: 72px;
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .hero-meta {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      margin-top: 14px;
     }
 
     /* ─── MOCKUP ─── */
     .mockup-wrapper {
       width: 100%;
-      max-width: 860px;
-      transform: perspective(1000px) rotateX(5deg);
-      transition: transform 1s cubic-bezier(0.16,1,0.3,1);
-      border: 1px solid var(--border-md);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 40px 120px rgba(0,0,0,0.7);
+      max-width: 900px;
+      margin: 80px auto 0;
+      perspective: 1400px;
+      position: relative;
     }
-    .mockup-wrapper.flat { transform: perspective(1000px) rotateX(0deg); }
+    .mockup-frame {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--rule-mid);
+      box-shadow:
+        0 2px 4px rgba(14,12,11,0.04),
+        0 8px 16px rgba(14,12,11,0.06),
+        0 24px 48px rgba(14,12,11,0.10),
+        0 60px 120px rgba(14,12,11,0.14);
+      transform: perspective(1400px) rotateX(8deg);
+      transform-origin: center top;
+      opacity: 0;
+    }
     .mockup-chrome {
-      background: #0D0B09;
-      border-bottom: 1px solid var(--border);
-      padding: 10px 16px;
+      height: 38px;
+      background: #EDEAE4;
+      border-bottom: 1px solid var(--rule);
       display: flex;
       align-items: center;
-      gap: 6px;
+      padding: 0 14px;
+      gap: 7px;
     }
-    .chrome-dot {
-      width: 10px; height: 10px;
+    .traffic-light {
+      width: 11px; height: 11px;
       border-radius: 50%;
+      opacity: 0.85;
     }
-    .chrome-dot.r { background: rgba(237,231,218,0.12); }
-    .chrome-dot.y { background: rgba(184,151,90,0.3); }
-    .chrome-dot.g { background: rgba(237,231,218,0.08); }
-    .chrome-title {
-      font-family: 'DM Mono', monospace;
+    .tl-r { background: #FF5F57; }
+    .tl-y { background: #FFBD2E; }
+    .tl-g { background: #28CA41; }
+    .mockup-url {
+      font-family: 'Geist Mono', monospace;
       font-size: 10px;
-      color: var(--subtle);
-      letter-spacing: 0.1em;
-      margin-left: auto;
-      margin-right: auto;
+      color: var(--ink-dim);
+      background: rgba(14,12,11,0.06);
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin: 0 auto;
     }
     .mockup-panels {
-      display: flex;
-      height: 360px;
+      display: grid;
+      grid-template-columns: 196px 1fr 158px;
+      height: 380px;
     }
+
+    /* Left panel */
     .panel-left {
-      width: 200px;
-      flex-shrink: 0;
-      background: #0E0C0A;
-      border-right: 1px solid var(--border);
-      padding: 20px 0;
+      background: #EDE9E2;
+      border-right: 1px solid var(--rule);
+      padding: 18px 14px;
       overflow: hidden;
     }
     .panel-left-header {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Geist Mono', monospace;
       font-size: 9px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
+      color: var(--ink-dim);
       text-transform: uppercase;
-      color: var(--subtle);
-      padding: 0 16px 12px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 10px;
     }
     .chapter-item {
       display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 16px;
-      cursor: pointer;
-      transition: background 0.2s;
+      align-items: flex-start;
+      gap: 9px;
+      padding: 8px 9px;
+      border-radius: 3px;
+      margin-bottom: 2px;
+      border: 1px solid transparent;
     }
-    .chapter-item.active { background: rgba(184,151,90,0.07); }
-    .chapter-dot {
-      width: 6px; height: 6px;
+    .chapter-item.active {
+      background: rgba(184,145,90,0.10);
+      border-color: var(--gold-border);
+    }
+    .ch-dot {
+      width: 5px; height: 5px;
       border-radius: 50%;
+      margin-top: 5px;
       flex-shrink: 0;
     }
-    .chapter-dot.done { background: rgba(140,180,100,0.5); }
-    .chapter-dot.active { background: var(--gold); box-shadow: 0 0 6px rgba(184,151,90,0.5); }
-    .chapter-dot.pending { background: rgba(237,231,218,0.15); }
-    .chapter-title {
-      font-family: 'Instrument Sans', sans-serif;
-      font-size: 11px;
-      color: var(--body);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .ch-done { background: rgba(74,222,128,0.7); }
+    .ch-active { background: var(--gold); }
+    .ch-pending { background: var(--rule-mid); }
+    .chapter-item span {
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
+      font-size: 11.5px;
+      line-height: 1.35;
+      color: var(--ink-mid);
     }
-    .chapter-item.active .chapter-title { color: var(--cream); }
+    .chapter-item.active span { color: var(--ink); font-weight: 400; }
+
+    /* Center panel */
     .panel-center {
-      flex: 1;
-      background: #121008;
+      background: var(--bg-card);
       padding: 28px 32px;
       overflow: hidden;
     }
-    .editor-chapter-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      color: var(--cream);
-      margin-bottom: 20px;
+    .editor-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .editor-title {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 21px;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 24px;
     }
     .text-line {
-      height: 8px;
-      background: rgba(237,231,218,0.08);
+      height: 9px;
+      background: rgba(14,12,11,0.07);
       border-radius: 2px;
       margin-bottom: 10px;
     }
-    .writing-indicator {
-      display: flex;
+    .stream-pill {
+      display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-top: 18px;
-    }
-    .writing-pill {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(184,151,90,0.1);
-      border: 1px solid rgba(184,151,90,0.2);
+      padding: 7px 13px;
+      background: rgba(184,145,90,0.08);
+      border: 1px solid var(--gold-border);
       border-radius: 3px;
-      padding: 4px 10px;
+      margin-top: 16px;
     }
-    .writing-pill-dot {
-      width: 5px; height: 5px;
+    .stream-dot {
+      width: 7px; height: 7px;
       border-radius: 50%;
       background: var(--gold);
-      animation: pulse 1.4s ease-in-out infinite;
+      animation: pulse 1.3s ease-in-out infinite;
     }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-    .writing-pill-text {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.1em;
+    .stream-text {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
       color: var(--gold);
+      letter-spacing: 0.08em;
     }
     .cursor-blink {
       display: inline-block;
       width: 2px;
-      height: 14px;
+      height: 15px;
       background: var(--gold);
-      margin-left: 4px;
-      animation: blink 1s step-end infinite;
+      margin-left: 6px;
       vertical-align: middle;
+      animation: blink 1.1s step-end infinite;
     }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.75)} }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* Right panel */
     .panel-right {
-      width: 160px;
-      flex-shrink: 0;
-      background: #0E0C0A;
-      border-left: 1px solid var(--border);
-      padding: 20px 16px;
+      background: #EDE9E2;
+      border-left: 1px solid var(--rule);
+      padding: 22px 18px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      justify-content: space-between;
     }
-    .stat-block {}
     .stat-label {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Geist Mono', monospace;
       font-size: 9px;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.14em;
+      color: var(--ink-dim);
       text-transform: uppercase;
-      color: var(--subtle);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
-    .stat-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      color: var(--cream);
+    .stat-value {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 34px;
       line-height: 1;
-    }
-    .stat-sub {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      color: var(--subtle);
-      margin-top: 2px;
+      color: var(--ink);
     }
     .progress-track {
-      margin-top: auto;
-    }
-    .progress-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      color: var(--subtle);
-      letter-spacing: 0.1em;
-      margin-bottom: 6px;
-    }
-    .progress-bar-bg {
       height: 2px;
-      background: rgba(237,231,218,0.08);
+      background: var(--rule);
       border-radius: 1px;
       overflow: hidden;
     }
-    .progress-bar-fill {
+    .progress-fill {
       height: 100%;
-      width: 38%;
+      width: 33%;
       background: var(--gold);
-      border-radius: 1px;
     }
 
-    /* ─── PROBLEM SECTION ─── */
-    #problem .two-col {
+    .mockup-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 100px;
+      background: linear-gradient(to top, var(--bg), transparent);
+      pointer-events: none;
+    }
+
+    /* ─── PROBLEM ─── */
+    #problem { border-top: 1px solid var(--rule); }
+    .problem-grid {
       display: grid;
-      grid-template-columns: 1fr 1px 1fr;
-      gap: 0 60px;
+      grid-template-columns: 1fr 1fr;
+      gap: 96px;
       align-items: start;
-    }
-    @media (max-width: 768px) {
-      #problem .two-col {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-      #problem .col-divider { display: none; }
-    }
-    .col-divider { background: var(--border-md); width: 1px; height: 100%; min-height: 200px; }
-    #problem .headline { font-size: clamp(36px, 4vw, 52px); }
-
-    /* ─── SCRIBE SECTION ─── */
-    #scribe { text-align: center; }
-    .pull-quote {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: clamp(28px, 3.5vw, 48px);
-      line-height: 1.15;
-      color: var(--cream);
-      max-width: 800px;
-      margin: 0 auto 40px;
-    }
-    .pipeline-steps {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      gap: 0;
-      margin-top: 64px;
-      overflow-x: auto;
-    }
-    .pipeline-step {
-      flex: 1;
-      min-width: 120px;
-      text-align: center;
-      padding: 0 16px;
       position: relative;
     }
-    .pipeline-step:not(:last-child)::after {
-      content: '';
+    .problem-col-rule {
       position: absolute;
-      top: 14px;
-      right: -1px;
-      width: 2px;
-      height: 1px;
-      background: var(--border-md);
+      left: 50%; top: 0; bottom: 0;
+      width: 1px;
+      background: var(--rule-mid);
+      transform: translateX(-50%);
     }
-    .pipeline-connector {
-      flex: 0 0 40px;
-      height: 1px;
-      background: var(--border-md);
-      margin-top: 14px;
+    .problem-headline {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'opsz' 144;
+      font-weight: 300;
+      font-size: clamp(40px, 5vw, 58px);
+      line-height: 1.0;
+      color: var(--ink);
     }
-    .step-number {
-      font-family: 'DM Mono', monospace;
+    .problem-aside {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 22px;
+      color: var(--ink-mid);
+      line-height: 1.4;
+      margin-top: 24px;
+    }
+    .problem-hr { margin: 32px 0; height: 1px; background: var(--rule); border: none; }
+    .problem-note {
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--ink-mid);
+    }
+
+    /* ─── SCRIBE ─── */
+    #scribe { border-top: 1px solid var(--rule); text-align: center; }
+    .pull-quote {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 1.25;
+      color: var(--ink);
+      max-width: 720px;
+      margin: 0 auto 32px;
+    }
+    .scribe-body {
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--ink-mid);
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    .scribe-hr { margin: 72px 0 64px; height: 1px; background: var(--rule); border: none; }
+    .pipeline-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
+    .strip-cell {
+      border-right: 1px solid var(--rule);
+      padding: 32px 28px 32px 0;
+      transition: all 0.15s ease;
+      cursor: default;
+    }
+    .strip-cell:last-child { border-right: none; }
+    .strip-cell:hover .strip-title { color: var(--gold); }
+    .strip-num {
+      font-family: 'Geist Mono', monospace;
       font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--gold);
+      letter-spacing: 0.16em;
+      color: var(--ink-dim);
+      margin-bottom: 16px;
       display: block;
+    }
+    .strip-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 20px;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 10px;
+      transition: color 0.15s;
+    }
+    .strip-desc {
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+
+    /* ─── WHO ─── */
+    #who { border-top: 1px solid var(--rule); }
+    .who-header { text-align: center; margin-bottom: 80px; }
+    .who-headline {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'opsz' 144;
+      font-weight: 300;
+      font-size: clamp(42px, 5vw, 60px);
+      line-height: 1.0;
+      color: var(--ink);
+    }
+    .who-block {
+      border-top: 1px solid var(--rule);
+      padding: 52px 0;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 72px;
+      align-items: baseline;
+    }
+    .who-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      padding-top: 7px;
+      line-height: 1.6;
+    }
+    .who-title {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 28px;
+      color: var(--ink);
+      line-height: 1.2;
       margin-bottom: 12px;
     }
-    .step-name {
-      font-family: 'Playfair Display', serif;
+    .who-body {
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
       font-size: 15px;
-      color: var(--cream);
-      margin-bottom: 8px;
+      color: var(--ink-mid);
+      line-height: 1.75;
+      max-width: 520px;
     }
-    .step-desc {
-      font-family: 'Instrument Sans', sans-serif;
-      font-size: 12px;
-      color: var(--body);
-      line-height: 1.5;
-    }
-
-    /* ─── WHO IT'S FOR ─── */
-    #who { text-align: center; }
-    .who-items { margin-top: 80px; }
-    .who-item { padding: 56px 0; }
-    .who-item:not(:last-child) { border-bottom: 1px solid var(--border); }
-    .who-item .eyebrow { margin-bottom: 16px; }
-    .who-item .headline { font-size: clamp(28px, 3vw, 40px); margin-bottom: 16px; }
 
     /* ─── PIPELINE DEEP DIVE ─── */
-    #pipeline {}
-    .pipeline-row {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 0 48px;
-      align-items: start;
-      padding: 40px 0;
-      border-bottom: 1px solid var(--border);
-      transition: border-color 0.3s ease;
-      position: relative;
-    }
-    .pipeline-row::before {
-      content: '';
-      position: absolute;
-      left: -4px; top: 0; bottom: 0;
-      width: 2px;
-      background: var(--gold);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .pipeline-row:hover::before { opacity: 1; }
-    .pipeline-row:hover .stage-name,
-    .pipeline-row:hover .stage-num { color: var(--cream); }
-    .pipeline-row:first-child { border-top: 1px solid var(--border); }
-    .stage-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      color: var(--subtle);
-      padding-top: 6px;
-      transition: color 0.3s ease;
-    }
-    .stage-content {}
-    .stage-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      color: var(--cream);
-      margin-bottom: 10px;
-      line-height: 1.1;
-      transition: color 0.3s ease;
-    }
-    .stage-desc { color: var(--body); font-size: 15px; }
-
-    /* ─── TESTIMONIALS ─── */
-    #testimonials { text-align: center; }
-    .testimonial-item { padding: 64px 0; max-width: 680px; margin: 0 auto; }
-    .testimonial-item:not(:last-child) { border-bottom: 1px solid var(--border); }
-    .stars { color: var(--gold); font-size: 12px; letter-spacing: 0.15em; margin-bottom: 24px; display: block; }
-    .quote-text {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 22px;
-      line-height: 1.45;
-      color: var(--cream);
-      margin-bottom: 24px;
-    }
-    .quote-author {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--subtle);
-    }
-
-    /* ─── ORIGIN SECTION ─── */
-    #origin {
-      background: var(--paper);
+    #pipeline { border-top: 1px solid var(--rule); }
+    .pipeline-header { text-align: center; margin-bottom: 80px; }
+    .pipeline-hed {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'opsz' 144;
+      font-weight: 300;
+      font-size: clamp(42px, 5vw, 60px);
+      line-height: 1.0;
       color: var(--ink);
-      transition: background 0.6s ease;
     }
-    #origin .eyebrow { color: rgba(8,7,6,0.45); }
-    #origin .body-text { color: rgba(8,7,6,0.65); }
-    #origin .divider, #origin .divider-md { border-color: rgba(8,7,6,0.12); }
-    .origin-grid {
-      display: grid;
-      grid-template-columns: 1fr 1px 1fr;
-      gap: 0 80px;
-      align-items: start;
-    }
-    @media (max-width: 768px) {
-      .origin-grid { grid-template-columns: 1fr; gap: 48px; }
-      .origin-divider { display: none; }
-    }
-    .origin-divider { background: rgba(8,7,6,0.1); width: 1px; }
-    #origin .headline { color: var(--ink); font-size: clamp(32px, 3.5vw, 48px); margin-bottom: 32px; }
-    .scripture-block {
-      font-family: 'Playfair Display', serif;
+    .pipeline-sub {
+      font-family: 'Fraunces', serif;
       font-style: italic;
-      font-size: clamp(20px, 2.5vw, 28px);
-      line-height: 1.4;
-      color: rgba(8,7,6,0.8);
-      padding-left: 28px;
-      border-left: 2px solid rgba(184,151,90,0.5);
+      font-weight: 300;
+      font-size: clamp(42px, 5vw, 60px);
+      line-height: 1.0;
+      color: var(--gold);
     }
-    .scripture-ref {
-      font-family: 'DM Mono', monospace;
+    .pipeline-row {
+      border-top: 1px solid var(--rule);
+      padding: 40px 0;
+      display: grid;
+      grid-template-columns: 72px 1fr 220px;
+      gap: 52px;
+      align-items: start;
+      cursor: default;
+      transition: background 0.15s;
+      border-radius: 4px;
+    }
+    .pipeline-row:last-child { border-bottom: 1px solid var(--rule); }
+    .step-num {
+      font-family: 'Geist Mono', monospace;
+      font-size: 13px;
+      color: var(--ink-dim);
+      padding-top: 6px;
+      transition: color 0.15s;
+    }
+    .step-label {
+      font-family: 'Geist Mono', monospace;
       font-size: 10px;
-      letter-spacing: 0.18em;
-      color: rgba(8,7,6,0.4);
-      margin-top: 16px;
-      display: block;
-      font-style: normal;
+      color: var(--gold);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .step-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 26px;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .step-desc {
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--ink-mid);
+      line-height: 1.78;
+      max-width: 560px;
+    }
+    .step-tag {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--ink-dim);
+      background: rgba(14,12,11,0.05);
+      border: 1px solid var(--rule-mid);
+      padding: 7px 13px;
+      border-radius: 3px;
+      align-self: flex-start;
+      white-space: nowrap;
+      text-align: right;
     }
 
-    /* ─── FEATURES ─── */
-    #features { text-align: center; }
-    #features .headline { font-size: clamp(36px, 4vw, 56px); margin-bottom: 80px; }
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      border: 1px solid var(--border);
+    /* ─── STUDIO FEATURES ─── */
+    #studio { border-top: 1px solid var(--rule); }
+    .studio-header { text-align: center; }
+    .studio-hed {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'opsz' 144;
+      font-weight: 300;
+      font-size: clamp(42px, 5vw, 60px);
+      line-height: 1.0;
+      color: var(--ink);
     }
-    @media (max-width: 768px) {
-      .features-grid { grid-template-columns: 1fr; }
+    .studio-sub {
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      color: var(--ink-mid);
+      max-width: 480px;
+      margin: 16px auto 80px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--rule-mid);
+      border-radius: 6px;
+      overflow: hidden;
     }
     .feature-cell {
-      padding: 40px 36px;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      text-align: left;
+      padding: 40px 38px;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.2s;
     }
-    .feature-cell:nth-child(3n) { border-right: none; }
-    .feature-cell:nth-child(n+4) { border-bottom: none; }
-    @media (max-width: 768px) {
-      .feature-cell { border-right: none; }
-      .feature-cell:last-child { border-bottom: none; }
+    .feature-cell:nth-child(2n) { border-right: none; }
+    .feature-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .feature-cell:hover { background: rgba(14,12,11,0.025); }
+    .feat-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 0.16em;
+      margin-bottom: 14px;
+      display: block;
     }
-    .feature-cell .eyebrow { margin-bottom: 12px; color: var(--subtle); }
-    .feature-cell p { font-size: 14px; color: var(--body); line-height: 1.65; }
+    .feat-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 22px;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .feat-body {
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    #testimonials { border-top: 1px solid var(--rule); }
+    .testi-header { text-align: center; margin-bottom: 80px; }
+    .testi-hed {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'opsz' 144;
+      font-weight: 300;
+      font-size: clamp(42px, 5vw, 60px);
+      line-height: 1.0;
+      color: var(--ink);
+    }
+    .testi-block {
+      border-top: 1px solid var(--rule);
+      padding: 56px 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 80px;
+      align-items: start;
+    }
+    .testi-stars {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .testi-quote {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(20px, 2.5vw, 26px);
+      line-height: 1.5;
+      color: var(--ink);
+      max-width: 660px;
+    }
+    .testi-name {
+      font-family: 'Geist', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .testi-role {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--ink-dim);
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+
+    /* ─── ORIGIN (DARK) ─── */
+    #origin {
+      background: var(--bg-dark);
+      border-top: 1px solid rgba(240,235,225,0.08);
+      border-bottom: 1px solid rgba(240,235,225,0.08);
+    }
+    #origin .eyebrow { color: var(--gold); }
+    #origin h2 { color: var(--dark-cream); }
+    #origin p { color: var(--dark-mid); }
+    #origin blockquote { color: var(--dark-cream); }
+    #origin .cite { color: var(--dark-dim); }
+    .origin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 96px;
+      align-items: center;
+    }
+    .origin-hed {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'opsz' 144;
+      font-weight: 300;
+      font-size: clamp(38px, 4.5vw, 54px);
+      line-height: 1.05;
+      color: var(--dark-cream);
+    }
+    .origin-paras { margin-top: 24px; display: flex; flex-direction: column; gap: 18px; }
+    .origin-right {
+      border-left: 1px solid rgba(240,235,225,0.08);
+      padding-left: 64px;
+    }
+    .scripture {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(24px, 2.8vw, 34px);
+      line-height: 1.45;
+      color: var(--dark-cream);
+    }
+    .cite {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--dark-dim);
+      letter-spacing: 0.16em;
+      margin-top: 20px;
+      display: block;
+    }
 
     /* ─── PRICING ─── */
-    #pricing { text-align: center; }
-    #pricing .headline-top { font-size: clamp(36px, 4vw, 56px); margin-bottom: 64px; }
+    #pricing { border-top: 1px solid var(--rule); text-align: center; }
+    .pricing-hed {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'opsz' 144;
+      font-weight: 300;
+      font-size: clamp(42px, 5vw, 60px);
+      line-height: 1.0;
+      color: var(--ink);
+    }
+    .pricing-sub {
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
+      font-size: 17px;
+      color: var(--ink-mid);
+      max-width: 420px;
+      margin: 14px auto 64px;
+    }
     .pricing-card {
       max-width: 540px;
       margin: 0 auto;
-      border: 1px solid var(--border-md);
+      background: var(--bg-card);
+      border: 1px solid var(--rule-mid);
+      border-radius: 6px;
+      padding: 56px 52px;
+      position: relative;
+      box-shadow: 0 4px 8px rgba(14,12,11,0.04), 0 12px 32px rgba(14,12,11,0.07);
+      text-align: left;
+    }
+    .card-gold-rule {
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .card-badge {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+      padding: 5px 13px;
       border-radius: 2px;
-      padding: 56px;
+      letter-spacing: 0.16em;
+      display: inline-block;
+      margin-bottom: 36px;
+    }
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+    .price-currency {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 32px;
+      color: var(--ink-mid);
     }
     .price-amount {
-      font-family: 'Playfair Display', serif;
-      font-size: 96px;
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 92px;
       line-height: 1;
-      color: var(--cream);
-      letter-spacing: -0.02em;
+      color: var(--ink);
     }
     .price-period {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: var(--subtle);
-      margin-top: 8px;
-      margin-bottom: 48px;
-      display: block;
-    }
-    .pricing-features { list-style: none; text-align: left; margin-bottom: 48px; }
-    .pricing-features li {
-      padding: 14px 0;
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
       font-size: 14px;
-      color: var(--body);
-      border-bottom: 1px solid var(--border);
+      color: var(--ink-mid);
+      margin-top: 6px;
+      margin-bottom: 40px;
+    }
+    .card-divider { border: none; border-top: 1px solid var(--rule); padding-top: 32px; margin-bottom: 32px; }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0; margin-bottom: 0; }
+    .feature-list li {
+      border-bottom: 1px solid var(--rule);
+      padding: 13px 0;
       display: flex;
-      align-items: center;
       gap: 12px;
+      align-items: flex-start;
     }
-    .pricing-features li:first-child { border-top: 1px solid var(--border); }
-    .pricing-features li::before {
-      content: '—';
-      color: var(--gold);
-      font-family: 'DM Mono', monospace;
+    .feature-list li:first-child { border-top: 1px solid var(--rule); }
+    .check {
+      font-family: 'Geist Mono', monospace;
       font-size: 11px;
+      color: var(--gold);
       flex-shrink: 0;
+      margin-top: 1px;
     }
-    .btn-gold {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--ink);
-      font-family: 'Instrument Sans', sans-serif;
+    .feature-list li span {
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
       font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-decoration: none;
-      padding: 16px 48px;
-      border-radius: 1px;
-      transition: opacity 0.3s ease;
+      color: var(--ink-mid);
+      line-height: 1.5;
+    }
+    .btn-gold-full {
+      display: block;
       width: 100%;
       text-align: center;
+      background: var(--gold);
+      color: #fff;
+      font-family: 'Geist', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      padding: 16px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 36px;
     }
-    .btn-gold:hover { opacity: 0.88; }
-    .guarantee-text {
-      font-family: 'DM Mono', monospace;
+    .btn-gold-full:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .guarantee-note {
+      font-family: 'Geist Mono', monospace;
       font-size: 10px;
-      letter-spacing: 0.14em;
-      color: var(--subtle);
-      margin-top: 32px;
-      display: block;
+      color: var(--ink-dim);
       text-align: center;
+      margin-top: 16px;
+      letter-spacing: 0.1em;
+      display: block;
+    }
+
+    /* ─── OBJECTIONS ─── */
+    #objections { border-top: 1px solid var(--rule); }
+    .obj-header { text-align: center; margin-bottom: 80px; }
+    .obj-hed {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'opsz' 144;
+      font-weight: 300;
+      font-size: clamp(42px, 5vw, 60px);
+      line-height: 1.0;
+      color: var(--ink);
+    }
+    .obj-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .obj-cell {
+      border: 1px solid var(--rule);
+      padding: 44px 40px;
+      margin: -1px 0 0 -1px;
+    }
+    .obj-q {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 22px;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+    .obj-a {
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
+      font-size: 14.5px;
+      color: var(--ink-mid);
+      line-height: 1.78;
     }
 
     /* ─── FAQ ─── */
-    #faq {}
-    #faq .section-headline { font-size: clamp(36px, 4vw, 52px); margin-bottom: 80px; }
-    .faq-item { border-bottom: 1px solid var(--border); }
-    .faq-item:first-of-type { border-top: 1px solid var(--border); }
-    .faq-question {
+    #faq { border-top: 1px solid var(--rule); }
+    .faq-header { text-align: center; margin-bottom: 64px; }
+    .faq-hed {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'opsz' 144;
+      font-weight: 300;
+      font-size: clamp(42px, 5vw, 60px);
+      line-height: 1.0;
+      color: var(--ink);
+    }
+    .faq-list { max-width: 740px; margin: 0 auto; }
+    .faq-item { border-top: 1px solid var(--rule); }
+    .faq-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 0;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 28px 0;
+      align-items: center;
       cursor: pointer;
-      list-style: none;
-      gap: 32px;
+      text-align: left;
+      gap: 24px;
     }
-    .faq-question::-webkit-details-marker { display: none; }
-    .faq-q-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      color: var(--cream);
-      line-height: 1.2;
+    .faq-q {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 19px;
+      color: var(--ink);
+      line-height: 1.35;
     }
-    .faq-icon {
-      font-family: 'DM Mono', monospace;
-      font-size: 16px;
-      color: var(--subtle);
+    .faq-toggle {
+      font-family: 'Geist Mono', monospace;
+      font-size: 18px;
+      color: var(--ink-dim);
+      transition: transform 0.22s, color 0.15s;
       flex-shrink: 0;
-      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), color 0.3s ease;
-      width: 20px;
-      text-align: center;
-    }
-    details[open] .faq-icon {
-      transform: rotate(45deg);
-      color: var(--gold);
+      line-height: 1;
     }
     .faq-answer {
-      font-family: 'Instrument Sans', sans-serif;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-answer-inner {
+      padding-bottom: 24px;
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
       font-size: 15px;
-      color: var(--body);
-      line-height: 1.75;
-      padding: 0 0 32px;
-      max-width: 680px;
+      color: var(--ink-mid);
+      line-height: 1.78;
     }
 
     /* ─── FINAL CTA ─── */
-    #final-cta {
-      min-height: 100vh;
+    #final {
+      border-top: 1px solid var(--rule);
+      min-height: 85vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 160px var(--px);
+      position: relative;
+      overflow: hidden;
     }
-    #final-cta .headline {
-      font-size: clamp(40px, 5vw, 72px);
+    .final-hed {
+      font-family: 'Fraunces', serif;
       font-style: italic;
-      margin-bottom: 32px;
-      max-width: 680px;
+      font-variation-settings: 'opsz' 144;
+      font-weight: 300;
+      font-size: clamp(52px, 8vw, 100px);
+      line-height: 0.93;
+      color: var(--ink);
+      max-width: 820px;
+      letter-spacing: -0.02em;
+      margin: 20px auto 32px;
     }
-    #final-cta .body-text { max-width: 440px; margin-bottom: 48px; }
+    .final-body {
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
+      font-size: 17px;
+      color: var(--ink-mid);
+      max-width: 480px;
+      margin: 0 auto 44px;
+      line-height: 1.7;
+    }
 
     /* ─── FOOTER ─── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 32px var(--px);
+      border-top: 1px solid var(--rule);
+      padding: 36px 0;
+      position: relative;
+      z-index: 1;
     }
-    .footer-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
+    footer .wrap {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
     }
     .footer-logo {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Fraunces', serif;
       font-style: italic;
-      font-size: 17px;
-      color: var(--subtle);
+      font-weight: 400;
+      font-size: 18px;
+      color: var(--ink-mid);
       text-decoration: none;
     }
-    .footer-links { display: flex; gap: 32px; }
+    .footer-links { display: flex; gap: 28px; }
     .footer-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--subtle);
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--ink-dim);
       text-decoration: none;
-      transition: color 0.2s ease;
+      transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--cream); }
+    .footer-links a:hover { color: var(--ink); }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
-      .section-padding { padding-top: 100px; padding-bottom: 100px; }
-      .pipeline-steps { flex-direction: column; align-items: center; }
-      .pipeline-connector { display: none; }
-      .features-grid { grid-template-columns: 1fr; }
-      .feature-cell:nth-child(3n) { border-right: none; }
-      .feature-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .wrap, .wrap-narrow { padding: 0 24px; }
+      section { padding: 80px 0; }
+      .mockup-panels { grid-template-columns: 1fr; height: auto; }
+      .panel-left, .panel-right { height: 120px; }
+      .problem-grid { grid-template-columns: 1fr; gap: 48px; }
+      .problem-col-rule { display: none; }
+      .pipeline-strip { grid-template-columns: 1fr 1fr; }
+      .strip-cell { border-bottom: 1px solid var(--rule); }
+      .who-block { grid-template-columns: 1fr; gap: 16px; }
+      .pipeline-row { grid-template-columns: 48px 1fr; gap: 24px; }
+      .pipeline-row .step-tag { display: none; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .feature-cell:nth-child(2n) { border-right: 1px solid var(--rule); }
+      .feature-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+      .feature-cell:last-child { border-bottom: none; }
+      .testi-block { grid-template-columns: 1fr; gap: 24px; }
+      .origin-grid { grid-template-columns: 1fr; gap: 48px; }
+      .origin-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(240,235,225,0.08); padding-top: 48px; }
+      .obj-grid { grid-template-columns: 1fr; }
       .pricing-card { padding: 40px 28px; }
       .price-amount { font-size: 72px; }
-      .pipeline-row { grid-template-columns: 48px 1fr; gap: 0 24px; }
-      .mockup-panels { height: auto; flex-direction: column; }
-      .panel-left, .panel-right { width: 100%; }
-      .panel-left { height: 140px; }
-      .panel-right { height: 100px; flex-direction: row; gap: 24px; align-items: center; }
-      .progress-track { margin-top: 0; }
     }
   </style>
 </head>
@@ -820,551 +1109,670 @@
 
   <!-- ─── NAV ─── -->
   <nav id="nav">
-    <a href="#" class="nav-logo">Unarchive</a>
-    <a href="#pricing" class="nav-cta">Begin Your Book</a>
+    <div class="wrap">
+      <a href="#" class="nav-logo">Unarchive</a>
+      <a href="#pricing" class="nav-btn">Begin Your Book</a>
+    </div>
   </nav>
 
   <!-- ─── HERO ─── -->
   <section id="hero">
-    <div class="hero-content">
-      <span class="eyebrow hero-eyebrow reveal">The Digital Scribe</span>
-
-      <h1 class="hero-headline" id="hero-headline">
-        <span class="word-group">Write the book</span><br>
-        <em class="word-group italic-line">God called you to write</em><br>
-        <span class="word-group">in hours, not years.</span>
-      </h1>
-
-      <p class="hero-subhead reveal delay-3">
-        Unarchive is an AI writing companion that learns your voice, carries your theology, and helps you get the book inside you onto the page — without losing yourself in the process.
-      </p>
-
-      <div class="hero-cta-group reveal delay-4">
-        <a href="#pricing" class="gold-link">Begin Your Book</a>
-        <span class="hero-price-note">$497 · 3 months full access</span>
+    <div class="wrap" style="display:flex;flex-direction:column;align-items:center;text-align:center;width:100%">
+      <span class="hero-eyebrow reveal">The Digital Scribe · AI Book Writing</span>
+      <h1 class="hero-headline split-words">Write the book <em>God called you</em> to write.</h1>
+      <div class="hero-vline"></div>
+      <p class="hero-subhead reveal" data-delay="0.1">Unarchive learns your voice, mines your stories, and streams your manuscript chapter by chapter — in hours, not years.</p>
+      <div class="hero-cta reveal" data-delay="0.2">
+        <a href="#pricing" class="btn-gold">Claim Your Access — $497</a>
+        <span class="hero-meta">$497 · 3 Months Full Access · Export to Word &amp; PDF</span>
       </div>
-
-      <hr class="hero-divider reveal delay-5" />
-
-      <!-- MOCKUP -->
-      <div class="mockup-wrapper reveal delay-6" id="mockup">
-        <div class="mockup-chrome">
-          <span class="chrome-dot r"></span>
-          <span class="chrome-dot y"></span>
-          <span class="chrome-dot g"></span>
-          <span class="chrome-title">Unarchive — Chapter Writer</span>
-        </div>
-        <div class="mockup-panels">
-          <!-- Left: chapter list -->
-          <div class="panel-left">
-            <div class="panel-left-header">Chapters</div>
-            <div class="chapter-item">
-              <span class="chapter-dot done"></span>
-              <span class="chapter-title">Introduction</span>
-            </div>
-            <div class="chapter-item">
-              <span class="chapter-dot done"></span>
-              <span class="chapter-title">The Calling</span>
-            </div>
-            <div class="chapter-item active">
-              <span class="chapter-dot active"></span>
-              <span class="chapter-title">Unburying the Gift</span>
-            </div>
-            <div class="chapter-item">
-              <span class="chapter-dot pending"></span>
-              <span class="chapter-title">The Voice Within</span>
-            </div>
-            <div class="chapter-item">
-              <span class="chapter-dot pending"></span>
-              <span class="chapter-title">Obedience &amp; Craft</span>
-            </div>
-            <div class="chapter-item">
-              <span class="chapter-dot pending"></span>
-              <span class="chapter-title">Writing as Witness</span>
-            </div>
-            <div class="chapter-item">
-              <span class="chapter-dot pending"></span>
-              <span class="chapter-title">The Reader You Serve</span>
-            </div>
-            <div class="chapter-item">
-              <span class="chapter-dot pending"></span>
-              <span class="chapter-title">Finishing Well</span>
-            </div>
+      <!-- Mockup -->
+      <div class="mockup-wrapper">
+        <div class="mockup-frame">
+          <div class="mockup-chrome">
+            <span class="traffic-light tl-r"></span>
+            <span class="traffic-light tl-y"></span>
+            <span class="traffic-light tl-g"></span>
+            <span class="mockup-url">unarchive.ai/studio</span>
           </div>
-          <!-- Center: editor -->
-          <div class="panel-center">
-            <div class="editor-chapter-title">Unburying the Gift</div>
-            <div class="text-line" style="width:92%"></div>
-            <div class="text-line" style="width:86%"></div>
-            <div class="text-line" style="width:95%"></div>
-            <div class="text-line" style="width:78%"></div>
-            <div class="text-line" style="width:89%"></div>
-            <div class="text-line" style="width:65%"></div>
-            <div class="writing-indicator">
-              <div class="writing-pill">
-                <span class="writing-pill-dot"></span>
-                <span class="writing-pill-text">Writing in your voice...</span>
+          <div class="mockup-panels">
+            <!-- Left: chapter list -->
+            <div class="panel-left">
+              <div class="panel-left-header">Your Chapters</div>
+              <div class="chapter-item">
+                <span class="ch-dot ch-done"></span>
+                <span>Introduction</span>
               </div>
-              <span class="cursor-blink"></span>
+              <div class="chapter-item">
+                <span class="ch-dot ch-done"></span>
+                <span>The Breaking Point</span>
+              </div>
+              <div class="chapter-item active">
+                <span class="ch-dot ch-active"></span>
+                <span>When God Shows Up</span>
+              </div>
+              <div class="chapter-item">
+                <span class="ch-dot ch-pending"></span>
+                <span>The Framework</span>
+              </div>
+              <div class="chapter-item">
+                <span class="ch-dot ch-pending"></span>
+                <span>Walking Others Through It</span>
+              </div>
+              <div class="chapter-item">
+                <span class="ch-dot ch-pending"></span>
+                <span>Your Next Step</span>
+              </div>
             </div>
-          </div>
-          <!-- Right: stats -->
-          <div class="panel-right">
-            <div class="stat-block">
-              <div class="stat-label">Words</div>
-              <div class="stat-number">14,280</div>
-              <div class="stat-sub">of ~50,000</div>
+            <!-- Center: editor -->
+            <div class="panel-center">
+              <div class="editor-label">Chapter 3 · Movement II</div>
+              <div class="editor-title">When God Shows Up in the Dark</div>
+              <div class="text-line" style="width:100%"></div>
+              <div class="text-line" style="width:91%"></div>
+              <div class="text-line" style="width:100%"></div>
+              <div class="text-line" style="width:76%"></div>
+              <div class="text-line" style="width:58%"></div>
+              <div>
+                <div class="stream-pill">
+                  <span class="stream-dot"></span>
+                  <span class="stream-text">Writing in your voice</span>
+                </div>
+                <span class="cursor-blink"></span>
+              </div>
             </div>
-            <div class="stat-block">
-              <div class="stat-label">Chapters</div>
-              <div class="stat-number">3/9</div>
-              <div class="stat-sub">complete</div>
-            </div>
-            <div class="stat-block">
-              <div class="stat-label">Est. Pages</div>
-              <div class="stat-number">57</div>
-              <div class="stat-sub">at 250 wpp</div>
-            </div>
-            <div class="progress-track">
-              <div class="progress-label">Progress</div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
+            <!-- Right: stats -->
+            <div class="panel-right">
+              <div>
+                <div class="stat-label">Words</div>
+                <div class="stat-value">2,847</div>
+              </div>
+              <div>
+                <div class="stat-label">Chapters</div>
+                <div class="stat-value">2 of 6</div>
+              </div>
+              <div>
+                <div class="stat-label">Pages</div>
+                <div class="stat-value">~11</div>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill"></div>
               </div>
             </div>
           </div>
         </div>
+        <div class="mockup-fade"></div>
       </div>
     </div>
   </section>
 
   <!-- ─── PROBLEM ─── -->
-  <section id="problem" class="section-padding">
-    <div class="container">
-      <hr class="divider" style="margin-bottom: 80px;" />
-      <div class="two-col">
+  <section id="problem">
+    <div class="wrap">
+      <div class="problem-grid">
+        <div class="problem-col-rule"></div>
         <div>
-          <h2 class="headline reveal">The blank page<br>has been<br><em>winning.</em></h2>
+          <span class="eyebrow reveal">The Problem</span>
+          <h2 class="problem-headline split-words">The blank page has been winning.</h2>
+          <p class="problem-aside reveal" data-delay="0.1">For years.</p>
+          <hr class="problem-hr reveal" data-delay="0.15" />
+          <p class="problem-note reveal" data-delay="0.2">It is not a discipline problem. It is a translation problem.</p>
         </div>
-        <div class="col-divider"></div>
         <div>
-          <p class="body-text reveal delay-2" style="margin-bottom: 24px;">
-            You have a message. A story. A framework forged through years of ministry, suffering, and clarity that other people desperately need. And yet the book remains unwritten.
-          </p>
-          <p class="body-text reveal delay-3" style="margin-bottom: 24px;">
-            Not because you lack the calling. Not because the ideas aren't there. But because writing is a craft that requires time, momentum, and a collaborator who understands your voice — and those resources have never been available to most authors.
-          </p>
-          <p class="body-text reveal delay-4">
-            Until now, the blank page has won by default. Unarchive changes the math.
-          </p>
+          <p class="reveal" style="font-family:'Geist',sans-serif;font-weight:300;font-size:16px;line-height:1.8;color:var(--ink-mid);margin-bottom:20px" data-delay="0">You have a message. You have years of sermons, a powerful testimony, or a framework that sets people free. But every time you sit down to write, the blinking cursor wins. The translation from raw thought to a structured chapter feels impossible.</p>
+          <p class="reveal" style="font-family:'Geist',sans-serif;font-weight:300;font-size:16px;line-height:1.8;color:var(--ink-mid);margin-bottom:20px" data-delay="0.1">The real issue is not discipline. It is that typing is not how you process the world. You are a speaker, a teacher, a leader. Traditional word processors give you a blank screen and expect you to do the entire job alone.</p>
+          <p class="reveal" style="font-family:'Geist',sans-serif;font-weight:300;font-size:16px;line-height:1.8;color:var(--ink-mid)" data-delay="0.2">Standard AI makes it worse. ChatGPT sounds like a soulless robot. It forgets your story by chapter three. It strips the conviction right out of your message. It was not built for people like you.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ─── SCRIBE ─── -->
-  <section id="scribe" class="section-padding">
-    <div class="container">
-      <hr class="divider" style="margin-bottom: 80px;" />
-      <span class="eyebrow reveal" style="margin-bottom: 24px;">The Opportunity</span>
-      <p class="pull-quote reveal delay-1">
-        "Paul had a scribe. Every great teacher in history<br class="hide-mobile"> had someone to carry the words.<br><br>That scribe is now available to everyone."
-      </p>
-      <p class="body-text reveal delay-2" style="max-width: 560px; margin: 0 auto 80px;">
-        For millennia, the gap between having something to say and having the capacity to say it at scale was unbridgeable for most. Unarchive closes that gap — preserving your voice, your theology, your particular way of seeing the world.
-      </p>
-      <hr class="divider" />
-      <!-- Pipeline overview -->
-      <div class="pipeline-steps" style="margin-top: 72px;">
-        <div class="pipeline-step reveal delay-1">
-          <span class="step-number">01</span>
-          <div class="step-name">Voice<br>Profile</div>
-          <div class="step-desc">We learn how you speak and write</div>
+  <section id="scribe">
+    <div class="wrap-narrow" style="text-align:center">
+      <span class="eyebrow reveal">The Solution</span>
+      <p class="pull-quote reveal" data-delay="0.05">"It doesn't replace your soul with a robot. It acts as a digital scribe — exactly like the Apostle Paul used in writing his letters."</p>
+      <p class="scribe-body reveal" data-delay="0.15">We built a system that learns who you are before it writes a single word. It extracts your voice. It mines your stories. Then it writes chapter by chapter from the material you actually have.</p>
+    </div>
+    <div class="wrap" style="margin-top:0">
+      <hr class="scribe-hr" />
+      <div class="pipeline-strip">
+        <div class="strip-cell reveal" data-delay="0">
+          <span class="strip-num">01</span>
+          <div class="strip-title">Author DNA</div>
+          <div class="strip-desc">Your voice, beliefs, and writing personality — locked in before a word is written.</div>
         </div>
-        <div class="pipeline-connector reveal"></div>
-        <div class="pipeline-step reveal delay-2">
-          <span class="step-number">02</span>
-          <div class="step-name">Theology<br>Map</div>
-          <div class="step-desc">Your convictions, frameworks &amp; vocabulary</div>
+        <div class="strip-cell reveal" data-delay="0.08">
+          <span class="strip-num">02</span>
+          <div class="strip-title">Story Excavator</div>
+          <div class="strip-desc">The AI interviews you to build a vault of your real-life stories and testimony.</div>
         </div>
-        <div class="pipeline-connector reveal"></div>
-        <div class="pipeline-step reveal delay-3">
-          <span class="step-number">03</span>
-          <div class="step-name">Book<br>Architecture</div>
-          <div class="step-desc">Structure, arc, and chapter logic</div>
+        <div class="strip-cell reveal" data-delay="0.16">
+          <span class="strip-num">03</span>
+          <div class="strip-title">Source Library</div>
+          <div class="strip-desc">Paste sermon links or raw notes. The system learns your frameworks.</div>
         </div>
-        <div class="pipeline-connector reveal"></div>
-        <div class="pipeline-step reveal delay-4">
-          <span class="step-number">04</span>
-          <div class="step-name">Chapter<br>Drafting</div>
-          <div class="step-desc">AI-assisted writing in your own voice</div>
+        <div class="strip-cell reveal" data-delay="0.24">
+          <span class="strip-num">04</span>
+          <div class="strip-title">Chapter Builder</div>
+          <div class="strip-desc">AI generates your full chapter outline. Drag, drop, and edit until it's perfect.</div>
         </div>
-        <div class="pipeline-connector reveal"></div>
-        <div class="pipeline-step reveal delay-5">
-          <span class="step-number">05</span>
-          <div class="step-name">Edit &amp;<br>Publish</div>
-          <div class="step-desc">Polish, format, and go to market</div>
+        <div class="strip-cell reveal" data-delay="0.32">
+          <span class="strip-num">05</span>
+          <div class="strip-title">Live Writing</div>
+          <div class="strip-desc">Click one button. Watch the chapter stream live in your voice.</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ─── WHO IT'S FOR ─── -->
-  <section id="who" class="section-padding">
-    <div class="container">
-      <hr class="divider" style="margin-bottom: 80px;" />
-      <span class="eyebrow reveal" style="margin-bottom: 16px;">Who It's For</span>
-      <h2 class="headline reveal delay-1" style="font-size: clamp(36px,4vw,56px);">Not for everyone.<br><em>Exactly for you.</em></h2>
-
-      <div class="who-items" style="margin-top: 80px;">
-        <div class="who-item">
-          <span class="eyebrow reveal">The Pastor</span>
-          <h3 class="headline reveal delay-1">Decades of sermons.<br><em>One unwritten book.</em></h3>
-          <p class="body-text reveal delay-2" style="max-width: 540px; margin: 16px auto 0;">You've preached this material a hundred times. Unarchive helps you finally get it on the page — in the voice your congregation already knows and trusts.</p>
+  <section id="who">
+    <div class="wrap">
+      <div class="who-header">
+        <span class="eyebrow reveal">Who This Is For</span>
+        <h2 class="who-headline reveal" data-delay="0.05">Your book is already inside you.</h2>
+      </div>
+      <div class="who-block reveal">
+        <div class="who-label">Pastors &amp; Ministry Leaders</div>
+        <div>
+          <div class="who-title">Decades of teachings. No time to structure 200 pages.</div>
+          <p class="who-body">Unarchive takes your existing sermons, frameworks, and teachings and turns them into a structured manuscript — without starting from a blank page.</p>
         </div>
-        <div class="who-item">
-          <span class="eyebrow reveal">The Practitioner</span>
-          <h3 class="headline reveal delay-1">Hard-won wisdom.<br><em>Too little time to write it.</em></h3>
-          <p class="body-text reveal delay-2" style="max-width: 540px; margin: 16px auto 0;">Coaches, counselors, consultants — you have frameworks that could change how people live and lead. Unarchive turns your method into a manuscript.</p>
+      </div>
+      <div class="who-block reveal">
+        <div class="who-label">Believers with a Testimony</div>
+        <div>
+          <div class="who-title">You survived. Now you're called to document it.</div>
+          <p class="who-body">The Story Excavator interviews you through your microphone. No typing. No organizing. Just your testimony, pulled out and structured into a book.</p>
         </div>
-        <div class="who-item">
-          <span class="eyebrow reveal">The Storyteller</span>
-          <h3 class="headline reveal delay-1">A testimony that<br><em>deserves to be read.</em></h3>
-          <p class="body-text reveal delay-2" style="max-width: 540px; margin: 16px auto 0;">Your story isn't just yours — it's someone else's roadmap out of a place they think no one has been. Write it. Unarchive will help you find the words.</p>
+      </div>
+      <div class="who-block reveal">
+        <div class="who-label">Christian Coaches &amp; Counselors</div>
+        <div>
+          <div class="who-title">Your framework deserves a book that opens doors.</div>
+          <p class="who-body">You need a signature book to establish authority and give clients a resource they keep on their desk. Unarchive builds it from the teaching you're already doing.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ─── PIPELINE DEEP DIVE ─── -->
-  <section id="pipeline" class="section-padding">
-    <div class="container">
-      <hr class="divider" style="margin-bottom: 80px;" />
-      <span class="eyebrow reveal" style="margin-bottom: 24px;">The Process</span>
-      <h2 class="headline reveal delay-1" style="font-size: clamp(36px,4vw,56px); margin-bottom: 80px;">Seven stages.<br><em>One complete manuscript.</em></h2>
+  <section id="pipeline">
+    <div class="wrap">
+      <div class="pipeline-header">
+        <span class="eyebrow reveal">The 7-Stage Pipeline</span>
+        <h2 class="pipeline-hed split-words">Most tools guess what you want to say.</h2>
+        <div class="pipeline-sub reveal" data-delay="0.1">Unarchive pulls it out of you.</div>
+      </div>
 
-      <div class="pipeline-row reveal">
-        <div class="stage-num">01</div>
-        <div class="stage-content">
-          <div class="stage-name">Intake &amp; Orientation</div>
-          <p class="stage-desc">You share your calling, your audience, and the core idea you've been carrying. We listen before we write.</p>
+      <div class="pipeline-row" data-delay="0">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-label">Book Setup</div>
+          <div class="step-title">Configure your entire book in 5 questions</div>
+          <p class="step-desc">Answer five foundational questions: topic, target reader, transformation promised, tone, and writing style. Style sliders let you calibrate between personal and framework-driven, conversational and authoritative. Every AI output for your book flows from this foundation.</p>
         </div>
+        <div class="step-tag">5-Question Wizard</div>
       </div>
-      <div class="pipeline-row reveal">
-        <div class="stage-num">02</div>
-        <div class="stage-content">
-          <div class="stage-name">Voice Calibration</div>
-          <p class="stage-desc">Upload sermons, articles, past writing, or simply talk to the system. Unarchive builds a precise model of how you sound — your cadence, your vocabulary, your rhetorical patterns.</p>
+
+      <div class="pipeline-row" data-delay="0">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-label">Author DNA</div>
+          <div class="step-title">The AI adopts your exact voice</div>
+          <p class="step-desc">You capture your background, core beliefs, writing personality, and how you naturally speak. This DNA is injected into every chapter the AI writes. The output doesn't sound like AI — it sounds like you gave a sermon and someone transcribed it perfectly.</p>
         </div>
+        <div class="step-tag">7-Field Voice Profile</div>
       </div>
-      <div class="pipeline-row reveal">
-        <div class="stage-num">03</div>
-        <div class="stage-content">
-          <div class="stage-name">Theological Anchoring</div>
-          <p class="stage-desc">You define your non-negotiables — the convictions, frameworks, and scriptural lens that everything runs through. The system holds these as guardrails throughout the entire project.</p>
+
+      <div class="pipeline-row" data-delay="0">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-label">Story Excavator</div>
+          <div class="step-title">Talk into your microphone. We build your story vault.</div>
+          <p class="step-desc">An AI interviews you to mine your personal stories, experiences, and real-life examples. You respond conversationally, exactly as you'd tell a story to a friend. The system builds a structured Story Bank — a library of your anecdotes that gets woven into chapters automatically. No notes required. Just speak.</p>
         </div>
+        <div class="step-tag">AI Interview + Voice-to-Text</div>
       </div>
-      <div class="pipeline-row reveal">
-        <div class="stage-num">04</div>
-        <div class="stage-content">
-          <div class="stage-name">Book Architecture</div>
-          <p class="stage-desc">Working together, we build the structure: part divisions, chapter arc, tension and resolution, the logical throughline. You approve every decision before we draft a word.</p>
+
+      <div class="pipeline-row" data-delay="0">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-label">Source Library</div>
+          <div class="step-title">Your sermons and frameworks, ingested</div>
+          <p class="step-desc">Paste YouTube links to your existing sermons — the system transcribes them automatically. Or paste raw text from your notes, teachings, or existing writing. This becomes the teaching content the AI draws from when writing your chapters. If you've already built content, it feeds straight in.</p>
         </div>
+        <div class="step-tag">YouTube Transcription + Text</div>
       </div>
-      <div class="pipeline-row reveal">
-        <div class="stage-num">05</div>
-        <div class="stage-content">
-          <div class="stage-name">Chapter Drafting</div>
-          <p class="stage-desc">The core of the work. Each chapter is drafted in sessions — you direct, the system writes, you edit. The output sounds like you because it was built on you from the beginning.</p>
+
+      <div class="pipeline-row" data-delay="0">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-label">Chapter Builder</div>
+          <div class="step-title">A full architectural outline before you write a word</div>
+          <p class="step-desc">The AI generates a chapter-by-chapter outline structured across three movements. Each chapter gets a core question, central concept, reader entry and exit state, practical takeaway, and an assigned story from your Story Bank. Drag to reorder. Edit every field. The outline is yours before writing begins.</p>
         </div>
+        <div class="step-tag">3-Movement Architecture</div>
       </div>
-      <div class="pipeline-row reveal">
-        <div class="stage-num">06</div>
-        <div class="stage-content">
-          <div class="stage-name">Developmental Edit</div>
-          <p class="stage-desc">Unarchive reviews the complete manuscript for pacing, consistency, argument strength, and voice fidelity — flagging every place where the book could be stronger.</p>
+
+      <div class="pipeline-row" data-delay="0">
+        <div class="step-num">06</div>
+        <div>
+          <div class="step-label">Chapter Writer</div>
+          <div class="step-title">One button. Watch your chapter appear.</div>
+          <p class="step-desc">Click Write This Chapter. Watch the AI stream the full chapter live — word by word — in your 3-panel studio. It writes with complete context: your DNA, your Story Bank, your Source Library, your book configuration, and every previously written chapter. The result sounds like you, connects to everything, and never repeats itself.</p>
         </div>
+        <div class="step-tag">Real-Time Streaming</div>
       </div>
-      <div class="pipeline-row reveal">
-        <div class="stage-num">07</div>
-        <div class="stage-content">
-          <div class="stage-name">Publish Readiness</div>
-          <p class="stage-desc">Final formatting, chapter summaries, back-cover copy, and a market positioning brief. You leave with a manuscript ready for an agent, a publisher, or self-publishing — your call.</p>
+
+      <div class="pipeline-row" data-delay="0">
+        <div class="step-num">07</div>
+        <div>
+          <div class="step-label">Publish Ready</div>
+          <div class="step-title">Professional manuscript in one export</div>
+          <p class="step-desc">When all chapters are complete, finalize your manuscript: table of contents, title page, proper margins, page numbers, chapter spacing, About the Author, foreword, intro, conclusion, and optional CTA page. Export as a professional .docx or .pdf. Ready for Amazon KDP, IngramSpark, or your publisher.</p>
+        </div>
+        <div class="step-tag">Export to .docx + .pdf</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── STUDIO FEATURES ─── -->
+  <section id="studio">
+    <div class="wrap">
+      <div class="studio-header">
+        <span class="eyebrow reveal">The Writing Studio</span>
+        <h2 class="studio-hed reveal" data-delay="0.05">Total control over every word.</h2>
+        <p class="studio-sub reveal" data-delay="0.12">You are the author. The AI is the typist.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-cell reveal">
+          <span class="feat-label">3-Panel Studio</span>
+          <div class="feat-title">See the whole picture at once</div>
+          <p class="feat-body">Chapter list on the left, live editor in the center, word count and stats on the right. Written and unwritten chapters visible at a glance. The full manuscript always in view.</p>
+        </div>
+        <div class="feature-cell reveal" data-delay="0.07">
+          <span class="feat-label">Tracked Changes</span>
+          <div class="feat-title">Edit like a professional editor</div>
+          <p class="feat-body">Highlight any text in any chapter and trigger an AI rewrite. Changes appear as insertions and deletions — exactly like a human editor's markup. Accept or reject every single change individually.</p>
+        </div>
+        <div class="feature-cell reveal" data-delay="0.07">
+          <span class="feat-label">Voice to Text</span>
+          <div class="feat-title">Don't want to type? Don't.</div>
+          <p class="feat-body">Every major input field across the entire platform has a microphone button. Click, speak, done. Especially powerful during the Story Excavator when you're narrating your testimony.</p>
+        </div>
+        <div class="feature-cell reveal" data-delay="0.14">
+          <span class="feat-label">Manuscript Studio</span>
+          <div class="feat-title">Read your whole book at once</div>
+          <p class="feat-body">When chapters are complete, switch to a full-scroll view of your entire manuscript as a single document. Edit, review, and see how the narrative flows from beginning to end.</p>
+        </div>
+        <div class="feature-cell reveal" data-delay="0.14">
+          <span class="feat-label">Regenerate Anytime</span>
+          <div class="feat-title">Nothing is ever locked in</div>
+          <p class="feat-body">Edit a chapter brief and regenerate with one click. Or scrap any chapter from within the editor and rewrite from scratch. Every decision is reversible. You are always in control.</p>
+        </div>
+        <div class="feature-cell reveal" data-delay="0.21">
+          <span class="feat-label">Archie — Your Guide</span>
+          <div class="feat-title">Built for non-technical authors</div>
+          <p class="feat-body">A built-in tutorial guide named Archie walks you through every single step on screen with explanations and encouragement. If you can fill out a form and speak into a microphone, you can write your book.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ─── TESTIMONIALS ─── -->
-  <section id="testimonials" class="section-padding">
-    <div class="container">
-      <hr class="divider" style="margin-bottom: 80px;" />
-      <span class="eyebrow reveal" style="margin-bottom: 16px;">Voices</span>
-      <h2 class="headline reveal delay-1" style="font-size: clamp(36px,4vw,52px); margin-bottom: 80px;">What authors are saying.</h2>
-
-      <div class="testimonial-item reveal">
-        <span class="stars">★★★★★</span>
-        <p class="quote-text">"I've been 'writing my book' for eleven years. With Unarchive, I had a complete first draft in six weeks. And it sounds exactly like me — my editor couldn't believe it was AI-assisted."</p>
-        <span class="quote-author">Pastor D. Warren — Lead Pastor, Memphis, TN</span>
+  <section id="testimonials">
+    <div class="wrap">
+      <div class="testi-header">
+        <span class="eyebrow reveal">Early Authors</span>
+        <h2 class="testi-hed reveal" data-delay="0.05">Authors who stopped staring at blank pages.</h2>
       </div>
-      <div class="testimonial-item reveal delay-1">
-        <span class="stars">★★★★★</span>
-        <p class="quote-text">"I was afraid the AI would flatten my voice into something generic. It did the opposite. It found patterns in my writing I didn't even know I had and brought them forward."</p>
-        <span class="quote-author">Dr. M. Osei — Author &amp; Professor of Theology</span>
+      <div class="testi-block reveal">
+        <div>
+          <span class="testi-stars">★ ★ ★ ★ ★</span>
+          <p class="testi-quote">"I've had a book in me for 11 years. I always told myself I wasn't a writer. Within three days of using Unarchive I had four complete chapters that actually sounded like me. I cried reading the first one back."</p>
+        </div>
+        <div style="flex-shrink:0">
+          <div class="testi-name">Pastor M.</div>
+          <div class="testi-role">Ministry Leader, Atlanta</div>
+        </div>
       </div>
-      <div class="testimonial-item reveal delay-2">
-        <span class="stars">★★★★★</span>
-        <p class="quote-text">"The theological guardrails were what sold me. I wasn't handing my convictions to a black box — I was collaborating with a system that held them as carefully as I do."</p>
-        <span class="quote-author">Rev. C. Alvarez — Church Planter &amp; Author</span>
+      <div class="testi-block reveal" data-delay="0.06">
+        <div>
+          <span class="testi-stars">★ ★ ★ ★ ★</span>
+          <p class="testi-quote">"The Story Excavator was a revelation. I've been trying to articulate my testimony for years but could never get it onto paper. The AI just asked me questions and suddenly there it was — my story, structured and clear."</p>
+        </div>
+        <div style="flex-shrink:0">
+          <div class="testi-name">Sarah T.</div>
+          <div class="testi-role">Christian Life Coach</div>
+        </div>
+      </div>
+      <div class="testi-block reveal" data-delay="0.12">
+        <div>
+          <span class="testi-stars">★ ★ ★ ★ ★</span>
+          <p class="testi-quote">"I was skeptical about AI sounding generic. But when I read what Unarchive wrote — it had my phrases, my analogies, my exact rhythm. My wife read a chapter and asked when I had time to write it. I hadn't typed a single word."</p>
+        </div>
+        <div style="flex-shrink:0">
+          <div class="testi-name">David R.</div>
+          <div class="testi-role">Pastor &amp; Speaker</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── ORIGIN (PAPER SECTION) ─── -->
-  <section id="origin" class="section-padding">
-    <div class="container">
+  <!-- ─── ORIGIN ─── -->
+  <section id="origin">
+    <div class="wrap">
       <div class="origin-grid">
         <div>
-          <span class="eyebrow reveal" style="margin-bottom: 24px;">Why We Built This</span>
-          <h2 class="headline reveal delay-1">The book<br>that could change<br><em>everything</em><br>never gets written.</h2>
-          <hr class="divider-md reveal delay-2" style="margin: 40px 0;" />
-          <p class="body-text reveal delay-2" style="margin-bottom: 20px;">
-            We built Unarchive because we watched extraordinary people — pastors, teachers, practitioners — carry world-changing ideas to their graves because the publishing world was never built for them.
-          </p>
-          <p class="body-text reveal delay-3" style="margin-bottom: 20px;">
-            The traditional publishing path requires a literary agent, years of proposals, and a platform that most authors build after the book, not before it. Self-publishing without support produces books that feel rushed, generic, and unworthy of the message inside them.
-          </p>
-          <p class="body-text reveal delay-4">
-            There had to be a third way. A way that honors the calling, preserves the voice, and actually gets the book done. That's Unarchive.
-          </p>
+          <span class="eyebrow reveal">Why We Built This</span>
+          <h2 class="origin-hed reveal" data-delay="0.05">We saw capable leaders paralyzed by a cursor.</h2>
+          <div class="origin-paras">
+            <p class="reveal" data-delay="0.1" style="font-family:'Geist',sans-serif;font-weight:300;font-size:15px;line-height:1.8;color:var(--dark-mid)">Most people who have a book in them never write it. We saw strong, credible leaders — pastors, coaches, believers with decades of testimony — stuck. They had the ideas. They had the calling. The mechanics of writing held their stories hostage for years.</p>
+            <p class="reveal" data-delay="0.16" style="font-family:'Geist',sans-serif;font-weight:300;font-size:15px;line-height:1.8;color:var(--dark-mid)">When AI came out, we thought it was the answer. But it wasn't. It wrote generic, hollow text. It didn't have their stories. It didn't sound like them. So we built Unarchive — a system that respects your message and amplifies your thinking, without losing your soul in the process.</p>
+          </div>
         </div>
-        <div class="origin-divider"></div>
-        <div style="display: flex; align-items: center;">
-          <blockquote class="scripture-block reveal delay-2">
-            "Write the vision;<br>make it plain on tablets,<br>so he may run<br>who reads it."
-            <span class="scripture-ref">Habakkuk 2:2 — ESV</span>
-          </blockquote>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── FEATURES ─── -->
-  <section id="features" class="section-padding">
-    <div class="container">
-      <hr class="divider" style="margin-bottom: 80px;" />
-      <span class="eyebrow reveal" style="margin-bottom: 16px;">What's Included</span>
-      <h2 class="headline reveal delay-1" style="font-size: clamp(36px,4vw,56px); margin-bottom: 80px;">Everything the book needs.<br><em>Nothing it doesn't.</em></h2>
-
-      <div class="features-grid">
-        <div class="feature-cell reveal">
-          <span class="eyebrow" style="margin-bottom: 12px;">Voice Engine</span>
-          <p>Trained on your existing writing, sermons, or recordings. Calibrates to your cadence, vocabulary, and rhetorical patterns.</p>
-        </div>
-        <div class="feature-cell reveal delay-1">
-          <span class="eyebrow" style="margin-bottom: 12px;">Theology Lock</span>
-          <p>Set your convictions as permanent guardrails. The system flags any generated content that drifts from your stated framework.</p>
-        </div>
-        <div class="feature-cell reveal delay-2">
-          <span class="eyebrow" style="margin-bottom: 12px;">Chapter Writer</span>
-          <p>Session-based drafting where you direct and the AI executes. Every paragraph is yours to approve, revise, or replace.</p>
-        </div>
-        <div class="feature-cell reveal delay-1">
-          <span class="eyebrow" style="margin-bottom: 12px;">Book Architect</span>
-          <p>Collaborative structure-building tool that maps your argument, arc, and chapter logic before a single word is drafted.</p>
-        </div>
-        <div class="feature-cell reveal delay-2">
-          <span class="eyebrow" style="margin-bottom: 12px;">Developmental Review</span>
-          <p>Automated manuscript analysis for pacing, consistency, argument strength, and voice fidelity across the full text.</p>
-        </div>
-        <div class="feature-cell reveal delay-3">
-          <span class="eyebrow" style="margin-bottom: 12px;">Publish Kit</span>
-          <p>Final formatting, chapter summaries, back-cover copy, and market positioning brief included with every completed manuscript.</p>
+        <div class="origin-right reveal" data-delay="0.1">
+          <blockquote class="scripture">"Write the vision and make it plain on tablets, that he may run who reads it."</blockquote>
+          <span class="cite">Habakkuk 2:2</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ─── PRICING ─── -->
-  <section id="pricing" class="section-padding">
-    <div class="container">
-      <hr class="divider" style="margin-bottom: 80px;" />
-      <span class="eyebrow reveal" style="margin-bottom: 16px;">Investment</span>
-      <h2 class="headline headline-top reveal delay-1">One price.<br><em>One complete book.</em></h2>
-
-      <div class="pricing-card reveal delay-2">
-        <span class="eyebrow" style="margin-bottom: 16px; color: var(--subtle);">Full Access — 3 Months</span>
-        <div class="price-amount">$497</div>
-        <span class="price-period">One-time payment · No subscription</span>
-        <ul class="pricing-features">
-          <li>Complete 7-stage writing pipeline</li>
-          <li>Voice Engine — trained on your material</li>
-          <li>Theology Lock with custom guardrails</li>
-          <li>Unlimited chapter drafting sessions</li>
-          <li>Full developmental review</li>
-          <li>Publish Kit &amp; market positioning brief</li>
-          <li>3 months of full platform access</li>
-          <li>Priority support throughout your project</li>
+  <section id="pricing">
+    <div class="wrap" style="text-align:center">
+      <span class="eyebrow reveal">Get Started</span>
+      <h2 class="pricing-hed reveal" data-delay="0.05">Get your book published.</h2>
+      <p class="pricing-sub reveal" data-delay="0.1">Full access to the Unarchive studio. Turn your raw ideas into a publish-ready manuscript.</p>
+      <div class="pricing-card reveal" data-delay="0.15">
+        <div class="card-gold-rule"></div>
+        <span class="card-badge">Full Access</span>
+        <div class="price-row">
+          <span class="price-currency">$</span>
+          <span class="price-amount">497</span>
+        </div>
+        <p class="price-period">3 months of complete access to the full platform</p>
+        <div class="card-divider"></div>
+        <ul class="feature-list">
+          <li><span class="check">✓</span><span>Write up to 3 complete books</span></li>
+          <li><span class="check">✓</span><span>Full 7-stage pipeline — Author DNA through Publish Ready</span></li>
+          <li><span class="check">✓</span><span>Story Excavator with AI interview and voice-to-text</span></li>
+          <li><span class="check">✓</span><span>Source Library — YouTube transcription and text paste</span></li>
+          <li><span class="check">✓</span><span>Real-time streaming chapter writer</span></li>
+          <li><span class="check">✓</span><span>Tracked changes and AI editing in the studio</span></li>
+          <li><span class="check">✓</span><span>Export to professional .docx and .pdf</span></li>
+          <li><span class="check">✓</span><span>Publish-Ready formatting (TOC, title page, margins, page numbers)</span></li>
+          <li><span class="check">✓</span><span>Archie guide — walkthrough every step of the process</span></li>
         </ul>
-        <a href="/auth/signup" class="btn-gold">Begin Your Book</a>
+        <a href="/auth/signup" class="btn-gold-full">Claim Your Access — $497</a>
+        <span class="guarantee-note">14-Day Money-Back Guarantee · If the AI doesn't capture your voice, full refund</span>
       </div>
+    </div>
+  </section>
 
-      <span class="guarantee-text reveal delay-3">30-day satisfaction guarantee · If you haven't made meaningful progress, we'll refund you in full.</span>
+  <!-- ─── OBJECTIONS ─── -->
+  <section id="objections">
+    <div class="wrap">
+      <div class="obj-header">
+        <span class="eyebrow reveal">Still Wondering</span>
+        <h2 class="obj-hed reveal" data-delay="0.05">If this is right for you?</h2>
+      </div>
+      <div class="obj-grid">
+        <div class="obj-cell reveal">
+          <p class="obj-q">"Am I cheating by using AI to write my book?"</p>
+          <p class="obj-a">Unarchive is not a ghostwriter. It is a scribe. You provide every piece of raw material — your DNA, your stories, your frameworks. The AI formats your words into structured chapters. It doesn't replace your thinking. It amplifies it. The final book is 100% your message, perfectly preserved.</p>
+        </div>
+        <div class="obj-cell reveal" data-delay="0.07">
+          <p class="obj-q">"Will it actually sound like me, or sound generic?"</p>
+          <p class="obj-a">This is why Author DNA and the Story Excavator exist. The AI doesn't write until it knows exactly who you are. Every chapter is written using your voice profile, your real personal stories, and your own teaching frameworks. Early users describe reading their chapters back and thinking someone had transcribed one of their sermons.</p>
+        </div>
+        <div class="obj-cell reveal" data-delay="0.07">
+          <p class="obj-q">"What if I'm not technical enough to use this?"</p>
+          <p class="obj-a">There are no prompts to memorize and no settings to configure. A built-in guide named Archie walks you through every step on screen. If you can fill out a form and speak into a microphone, you can write your book. We built it for leaders, not developers.</p>
+        </div>
+        <div class="obj-cell reveal" data-delay="0.14">
+          <p class="obj-q">"What if I don't have existing notes or content?"</p>
+          <p class="obj-a">That is exactly why we built the Story Excavator. You don't need existing notes or a Word document full of ideas. You speak into your microphone, and the AI interviews you to pull the stories and frameworks right out of your head. Your experience and testimony are the content.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ─── FAQ ─── -->
-  <section id="faq" class="section-padding">
-    <div class="container">
-      <hr class="divider" style="margin-bottom: 80px;" />
-      <span class="eyebrow reveal" style="margin-bottom: 16px;">Questions</span>
-      <h2 class="headline section-headline reveal delay-1">What people ask<br><em>before they begin.</em></h2>
+  <section id="faq">
+    <div class="wrap">
+      <div class="faq-header">
+        <span class="eyebrow reveal">FAQ</span>
+        <h2 class="faq-hed reveal" data-delay="0.05">Frequently asked questions.</h2>
+      </div>
+      <div class="faq-list">
 
-      <details class="faq-item reveal">
-        <summary class="faq-question">
-          <span class="faq-q-text">Will it actually sound like me, or will it sound like AI?</span>
-          <span class="faq-icon">+</span>
-        </summary>
-        <p class="faq-answer">The Voice Engine is trained specifically on your material — your sermons, your articles, your past writing, even recordings of you speaking. It builds a model of how you construct sentences, which words you reach for, how you move between ideas. The result is prose that reads as yours because it was built on yours. You will still edit and direct — we recommend it — but the raw output will not feel generic.</p>
-      </details>
+        <div class="faq-item reveal">
+          <button class="faq-btn">
+            <span class="faq-q">Do I own the rights to my book?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Yes. You retain 100% of the rights and all royalties. Unarchive provides the software to help you get the words onto the page. You own everything you produce — permanently.</p>
+          </div>
+        </div>
 
-      <details class="faq-item reveal">
-        <summary class="faq-question">
-          <span class="faq-q-text">How does Theology Lock work exactly?</span>
-          <span class="faq-icon">+</span>
-        </summary>
-        <p class="faq-answer">At the start of your project, you fill in a Theology Map — your core convictions, your non-negotiables, your hermeneutical approach, and any positions you hold that AI systems sometimes get wrong or flatten. These become permanent context that every generation pass is evaluated against. The system flags content that drifts from your stated framework and will not proceed past a flagged section without your review and approval.</p>
-      </details>
+        <div class="faq-item reveal">
+          <button class="faq-btn">
+            <span class="faq-q">Does Unarchive publish the book for me?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">No. Unarchive handles the writing, editing, and professional formatting. You export a publish-ready Word document or PDF. You handle the actual distribution, cover design, and printing through platforms like Amazon KDP or IngramSpark.</p>
+          </div>
+        </div>
 
-      <details class="faq-item reveal">
-        <summary class="faq-question">
-          <span class="faq-q-text">What if I've never written a book before?</span>
-          <span class="faq-icon">+</span>
-        </summary>
-        <p class="faq-answer">Unarchive was designed for people who have never written a book before. The Book Architect walks you through structure step by step. The Chapter Writer uses conversation — you talk, it writes. You don't need to know how to construct a chapter; you need to know what you want to say. We help with everything else.</p>
-      </details>
+        <div class="faq-item reveal">
+          <button class="faq-btn">
+            <span class="faq-q">Can I use Unarchive on my phone?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">No. Writing a book takes focus and screen real estate. Unarchive is designed specifically for desktop use to give you the full 3-panel studio experience. Attempting to write on a phone would shortchange the process.</p>
+          </div>
+        </div>
 
-      <details class="faq-item reveal">
-        <summary class="faq-question">
-          <span class="faq-q-text">How long does it actually take?</span>
-          <span class="faq-icon">+</span>
-        </summary>
-        <p class="faq-answer">Most authors complete a full manuscript — 40,000 to 60,000 words — within 6 to 10 weeks of consistent sessions. The pace is entirely yours. You can work in focused sprints or steady daily sessions. The 3-month access window gives you space to draft, revise, and finalize without pressure.</p>
-      </details>
+        <div class="faq-item reveal">
+          <button class="faq-btn">
+            <span class="faq-q">What if I don't have any existing content yet?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">That's exactly why we built the Story Excavator. You don't need existing notes. You just speak into your microphone, and the AI interviews you to pull your stories and frameworks out of your head. Your testimony is the content.</p>
+          </div>
+        </div>
 
-      <details class="faq-item reveal">
-        <summary class="faq-question">
-          <span class="faq-q-text">Is this really my book, or is it the AI's book?</span>
-          <span class="faq-icon">+</span>
-        </summary>
-        <p class="faq-answer">It is your book. Every idea, every conviction, every story is yours. Unarchive is a tool — the same way a ghostwriter, a dictation service, or an editor is a tool. The content originates from you. The system helps you get it onto the page in a form that is publishable. You retain full ownership of everything produced.</p>
-      </details>
+        <div class="faq-item reveal">
+          <button class="faq-btn">
+            <span class="faq-q">What happens after my 3 months of access?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Three months is enough time to finish your book using the structured pipeline. Once you're done, you export your files and they are yours permanently. If you want to write additional books later, you can renew your access.</p>
+          </div>
+        </div>
 
-      <details class="faq-item reveal">
-        <summary class="faq-question">
-          <span class="faq-q-text">What happens after 3 months if I'm not done?</span>
-          <span class="faq-icon">+</span>
-        </summary>
-        <p class="faq-answer">You can extend your access at a reduced rate. Most authors finish well within the 3-month window, but life happens. We don't abandon projects in progress. Contact support and we'll work something out.</p>
-      </details>
+        <div class="faq-item reveal">
+          <button class="faq-btn">
+            <span class="faq-q">How is this different from ChatGPT?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">ChatGPT knows nothing about you. It writes generic text in a corporate voice and loses your context by chapter three. Unarchive builds a complete profile of your voice, your stories, and your teaching before writing a single word — and every chapter is written with your entire book's context loaded simultaneously.</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
   <!-- ─── FINAL CTA ─── -->
-  <section id="final-cta">
-    <div class="container" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-      <span class="eyebrow reveal" style="margin-bottom: 32px;">Begin</span>
-      <h2 class="headline reveal delay-1" style="font-size: clamp(40px,5.5vw,72px); font-style: italic; margin-bottom: 32px; max-width: 680px; line-height: 1.05;">Your testimony is ready<br>to be written.</h2>
-      <p class="body-text reveal delay-2" style="max-width: 440px; margin-bottom: 48px;">The book has been waiting long enough. The people who need it have been waiting long enough. So have you.</p>
-      <div class="reveal delay-3">
-        <a href="#pricing" class="gold-link" style="font-size: 17px;">Begin Your Book</a>
-        <span class="hero-price-note">$497 · 3 months full access · 30-day guarantee</span>
+  <section id="final">
+    <div class="wrap" style="display:flex;flex-direction:column;align-items:center;text-align:center;width:100%">
+      <span class="eyebrow reveal">Your Book Is Ready</span>
+      <h2 class="final-hed split-words">Your testimony is ready to be written.</h2>
+      <p class="final-body reveal" data-delay="0.1">The ideas have lived in your head long enough. Someone is waiting on the other side of your obedience. Let the scribe do the heavy lifting.</p>
+      <div class="reveal" data-delay="0.2" style="display:flex;flex-direction:column;align-items:center;gap:12px">
+        <a href="#pricing" class="btn-gold">Claim Your Access — $497</a>
+        <span style="font-family:'Geist Mono',monospace;font-size:10px;color:var(--ink-dim);letter-spacing:0.12em;text-transform:uppercase">14-Day Money-Back Guarantee</span>
       </div>
     </div>
   </section>
 
   <!-- ─── FOOTER ─── -->
   <footer>
-    <div class="footer-inner">
+    <div class="wrap">
       <a href="#" class="footer-logo">Unarchive</a>
       <nav class="footer-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="mailto:hello@unarchive.ai">Contact</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="mailto:hello@unarchive.ai">Contact Support</a>
       </nav>
     </div>
   </footer>
 
   <script>
+    gsap.registerPlugin(ScrollTrigger);
+
     // ─── NAV SCROLL ───
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 80);
     }, { passive: true });
 
-    // ─── INTERSECTION OBSERVER FOR REVEALS ───
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+    // ─── WORD-SPLIT HEADLINES ───
+    document.querySelectorAll('.split-words').forEach(el => {
+      // Preserve inner HTML structure (for <em> etc)
+      // We'll do a text-node-level split to handle mixed content
+      const originalHTML = el.innerHTML;
+
+      // Simple approach: split text at word boundaries, wrap each word
+      // Handle <em> tags specially
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = originalHTML;
+
+      let wordIndex = 0;
+      const allWordSpans = [];
+
+      function processNode(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const words = node.textContent.split(/(\s+)/);
+          const frag = document.createDocumentFragment();
+          words.forEach(part => {
+            if (/\S/.test(part)) {
+              const outer = document.createElement('span');
+              outer.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:top';
+              const inner = document.createElement('span');
+              inner.className = 'word-inner';
+              inner.style.cssText = 'display:inline-block;transform:translateY(105%)';
+              inner.textContent = part;
+              outer.appendChild(inner);
+              frag.appendChild(outer);
+              allWordSpans.push(inner);
+              wordIndex++;
+            } else if (part) {
+              frag.appendChild(document.createTextNode(part));
+            }
+          });
+          node.parentNode.replaceChild(frag, node);
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          // Clone the element to preserve tag/style, process children
+          Array.from(node.childNodes).forEach(child => processNode(child));
+        }
+      }
+
+      Array.from(tempDiv.childNodes).forEach(child => processNode(child));
+      el.innerHTML = '';
+      Array.from(tempDiv.childNodes).forEach(child => el.appendChild(child.cloneNode ? child.cloneNode(true) : child));
+
+      // Collect all word-inners after DOM replacement
+      const wordInners = el.querySelectorAll('.word-inner');
+
+      gsap.to(wordInners, {
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        y: '0%',
+        duration: 0.85,
+        ease: 'power4.out',
+        stagger: 0.055
+      });
+    });
+
+    // ─── UNIVERSAL REVEAL ───
+    gsap.utils.toArray('.reveal').forEach(el => {
+      gsap.from(el, {
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        opacity: 0,
+        y: 28,
+        duration: 0.9,
+        ease: 'power3.out',
+        delay: parseFloat(el.dataset.delay || 0)
+      });
+    });
+
+    // ─── HERO MOCKUP ENTRANCE ───
+    gsap.to('.mockup-frame', {
+      rotateX: 8,
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: 'power4.out',
+      delay: 0.4
+    });
+
+    // ─── MOCKUP UNROTATE ON SCROLL ───
+    gsap.to('.mockup-frame', {
+      rotateX: 0,
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+
+    // ─── PIPELINE ROW HOVER ───
+    document.querySelectorAll('.pipeline-row').forEach(row => {
+      const num = row.querySelector('.step-num');
+      row.addEventListener('mouseenter', () => {
+        gsap.to(row, { backgroundColor: 'var(--bg-inset)', paddingLeft: 12, paddingRight: 12, duration: 0.15 });
+        if (num) gsap.to(num, { color: 'var(--gold)', duration: 0.15 });
+      });
+      row.addEventListener('mouseleave', () => {
+        gsap.to(row, { backgroundColor: 'transparent', paddingLeft: 0, paddingRight: 0, duration: 0.15 });
+        if (num) gsap.to(num, { color: 'var(--ink-dim)', duration: 0.15 });
+      });
+    });
+
+    // ─── FAQ TOGGLE ───
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const btn = item.querySelector('.faq-btn');
+      const answer = item.querySelector('.faq-answer');
+      const toggle = item.querySelector('.faq-toggle');
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-item.open').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-answer').style.maxHeight = '0';
+          i.querySelector('.faq-toggle').style.transform = 'rotate(0deg)';
+          i.querySelector('.faq-toggle').style.color = 'var(--ink-dim)';
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          toggle.style.transform = 'rotate(45deg)';
+          toggle.style.color = 'var(--gold)';
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal, .reveal-fast').forEach(el => observer.observe(el));
-
-    // ─── HERO HEADLINE WORD SPLIT ───
-    const heroHeadline = document.getElementById('hero-headline');
-    if (heroHeadline) {
-      const wordGroups = heroHeadline.querySelectorAll('.word-group');
-      wordGroups.forEach((group, groupIdx) => {
-        const text = group.innerHTML;
-        const isItalic = group.classList.contains('italic-line');
-        // Split into words, preserving HTML
-        const words = text.split(/(\s+)/);
-        group.innerHTML = '';
-        let wordCount = 0;
-        words.forEach(part => {
-          if (/\S/.test(part)) {
-            const span = document.createElement('span');
-            span.className = 'split-word';
-            span.style.transitionDelay = (groupIdx * 0.18 + wordCount * 0.06) + 's';
-            span.innerHTML = part;
-            if (isItalic) span.style.fontStyle = 'italic';
-            group.appendChild(span);
-            wordCount++;
-          } else {
-            group.appendChild(document.createTextNode(part));
-          }
-        });
-      });
-
-      // Trigger after a short delay
-      setTimeout(() => {
-        heroHeadline.querySelectorAll('.split-word').forEach(w => w.classList.add('visible'));
-      }, 200);
-    }
-
-    // ─── MOCKUP TILT ON SCROLL ───
-    const mockup = document.getElementById('mockup');
-    if (mockup) {
-      const mockupObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setTimeout(() => mockup.classList.add('flat'), 600);
-          }
-        });
-      }, { threshold: 0.3 });
-      mockupObserver.observe(mockup);
-    }
-
-    // ─── PARALLAX ON HERO ───
-    const heroContent = document.querySelector('.hero-content');
-    window.addEventListener('scroll', () => {
-      if (heroContent) {
-        const y = window.scrollY * 0.3;
-        heroContent.style.transform = `translateY(${y}px)`;
-      }
-    }, { passive: true });
+    });
   </script>
 </body>
 </html>
