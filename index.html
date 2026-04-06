@@ -7,7 +7,7 @@
   <meta name="description" content="Unarchive is a 7-stage AI book-writing system for Christian leaders, pastors, and believers with a testimony. Write your manuscript in hours, not years." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
@@ -156,12 +156,12 @@
       font-family: 'Fraunces', serif;
       font-variation-settings: 'opsz' 144;
       font-weight: 300;
-      font-size: clamp(68px, 9.5vw, 120px);
-      line-height: 0.93;
+      font-size: clamp(48px, 6.5vw, 80px);
+      line-height: 0.95;
       color: var(--ink);
       text-align: center;
-      max-width: 860px;
-      margin: 20px auto 0;
+      max-width: 760px;
+      margin: 16px auto 0;
       letter-spacing: -0.02em;
     }
     .hero-headline em {
@@ -170,9 +170,9 @@
     }
     .hero-vline {
       width: 1px;
-      height: 52px;
+      height: 36px;
       background: var(--rule-mid);
-      margin: 32px auto;
+      margin: 20px auto;
     }
     .hero-subhead {
       font-family: 'Geist', sans-serif;
@@ -184,7 +184,7 @@
       margin: 0 auto;
     }
     .hero-cta {
-      margin-top: 44px;
+      margin-top: 28px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -216,7 +216,7 @@
     .mockup-wrapper {
       width: 100%;
       max-width: 900px;
-      margin: 80px auto 0;
+      margin: 40px auto 0;
       perspective: 1400px;
       position: relative;
     }
@@ -438,11 +438,11 @@
       transform: translateX(-50%);
     }
     .problem-headline {
-      font-family: 'Fraunces', serif;
-      font-variation-settings: 'opsz' 144;
-      font-weight: 300;
-      font-size: clamp(40px, 5vw, 58px);
-      line-height: 1.0;
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      font-size: clamp(34px, 4.2vw, 50px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
       color: var(--ink);
     }
     .problem-aside {
@@ -489,11 +489,12 @@
     }
     .strip-cell {
       border-right: 1px solid var(--rule);
-      padding: 32px 28px 32px 0;
+      padding: 28px 20px;
       transition: all 0.15s ease;
       cursor: default;
     }
-    .strip-cell:last-child { border-right: none; }
+    .strip-cell:first-child { padding-left: 0; }
+    .strip-cell:last-child { border-right: none; padding-right: 0; }
     .strip-cell:hover .strip-title { color: var(--gold); }
     .strip-num {
       font-family: 'Geist Mono', monospace;
@@ -524,11 +525,11 @@
     #who { border-top: 1px solid var(--rule); }
     .who-header { text-align: center; margin-bottom: 80px; }
     .who-headline {
-      font-family: 'Fraunces', serif;
-      font-variation-settings: 'opsz' 144;
-      font-weight: 300;
-      font-size: clamp(42px, 5vw, 60px);
-      line-height: 1.0;
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      font-size: clamp(36px, 4.5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
       color: var(--ink);
     }
     .who-block {
@@ -541,9 +542,9 @@
     }
     .who-label {
       font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      color: var(--ink-dim);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--ink-mid);
       text-transform: uppercase;
       padding-top: 7px;
       line-height: 1.6;
@@ -570,11 +571,11 @@
     #pipeline { border-top: 1px solid var(--rule); }
     .pipeline-header { text-align: center; margin-bottom: 80px; }
     .pipeline-hed {
-      font-family: 'Fraunces', serif;
-      font-variation-settings: 'opsz' 144;
-      font-weight: 300;
-      font-size: clamp(42px, 5vw, 60px);
-      line-height: 1.0;
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      font-size: clamp(36px, 4.5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
       color: var(--ink);
     }
     .pipeline-sub {
@@ -589,7 +590,7 @@
       border-top: 1px solid var(--rule);
       padding: 40px 0;
       display: grid;
-      grid-template-columns: 72px 1fr 220px;
+      grid-template-columns: 72px 1fr 260px;
       gap: 52px;
       align-items: start;
       cursor: default;
@@ -645,11 +646,11 @@
     #studio { border-top: 1px solid var(--rule); }
     .studio-header { text-align: center; }
     .studio-hed {
-      font-family: 'Fraunces', serif;
-      font-variation-settings: 'opsz' 144;
-      font-weight: 300;
-      font-size: clamp(42px, 5vw, 60px);
-      line-height: 1.0;
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      font-size: clamp(36px, 4.5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
       color: var(--ink);
     }
     .studio-sub {
@@ -676,6 +677,7 @@
     }
     .feature-cell:nth-child(2n) { border-right: none; }
     .feature-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .feature-cell:last-child:nth-child(odd) { border-right: none; grid-column: span 1; }
     .feature-cell:hover { background: rgba(14,12,11,0.025); }
     .feat-label {
       font-family: 'Geist Mono', monospace;
@@ -704,11 +706,11 @@
     #testimonials { border-top: 1px solid var(--rule); }
     .testi-header { text-align: center; margin-bottom: 80px; }
     .testi-hed {
-      font-family: 'Fraunces', serif;
-      font-variation-settings: 'opsz' 144;
-      font-weight: 300;
-      font-size: clamp(42px, 5vw, 60px);
-      line-height: 1.0;
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      font-size: clamp(36px, 4.5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
       color: var(--ink);
     }
     .testi-block {
@@ -770,11 +772,11 @@
       align-items: center;
     }
     .origin-hed {
-      font-family: 'Fraunces', serif;
-      font-variation-settings: 'opsz' 144;
-      font-weight: 300;
-      font-size: clamp(38px, 4.5vw, 54px);
-      line-height: 1.05;
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
       color: var(--dark-cream);
     }
     .origin-paras { margin-top: 24px; display: flex; flex-direction: column; gap: 18px; }
@@ -802,11 +804,11 @@
     /* ─── PRICING ─── */
     #pricing { border-top: 1px solid var(--rule); text-align: center; }
     .pricing-hed {
-      font-family: 'Fraunces', serif;
-      font-variation-settings: 'opsz' 144;
-      font-weight: 300;
-      font-size: clamp(42px, 5vw, 60px);
-      line-height: 1.0;
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      font-size: clamp(36px, 4.5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
       color: var(--ink);
     }
     .pricing-sub {
@@ -926,11 +928,11 @@
     #objections { border-top: 1px solid var(--rule); }
     .obj-header { text-align: center; margin-bottom: 80px; }
     .obj-hed {
-      font-family: 'Fraunces', serif;
-      font-variation-settings: 'opsz' 144;
-      font-weight: 300;
-      font-size: clamp(42px, 5vw, 60px);
-      line-height: 1.0;
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      font-size: clamp(36px, 4.5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
       color: var(--ink);
     }
     .obj-grid {
@@ -964,11 +966,11 @@
     #faq { border-top: 1px solid var(--rule); }
     .faq-header { text-align: center; margin-bottom: 64px; }
     .faq-hed {
-      font-family: 'Fraunces', serif;
-      font-variation-settings: 'opsz' 144;
-      font-weight: 300;
-      font-size: clamp(42px, 5vw, 60px);
-      line-height: 1.0;
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      font-size: clamp(36px, 4.5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
       color: var(--ink);
     }
     .faq-list { max-width: 740px; margin: 0 auto; }
@@ -1078,6 +1080,424 @@
       transition: color 0.2s;
     }
     .footer-links a:hover { color: var(--ink); }
+
+    /* ─── PIPELINE STEP MINI UIs ─── */
+    .step-ui {
+      border: 1px solid var(--rule-mid);
+      border-radius: 7px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 1px 3px rgba(14,12,11,0.05), 0 4px 14px rgba(14,12,11,0.08);
+      align-self: flex-start;
+    }
+    .sui-chrome {
+      height: 30px;
+      background: #EDEAE4;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      gap: 5px;
+    }
+    .sui-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      opacity: 0.85;
+      flex-shrink: 0;
+    }
+    .sui-dot-r { background: #FF5F57; }
+    .sui-dot-y { background: #FFBD2E; }
+    .sui-dot-g { background: #28CA41; }
+    .sui-chrome-title {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.10em;
+      color: var(--ink-dim);
+      margin: 0 auto;
+    }
+    .sui-body { padding: 14px; }
+
+    /* Form fields */
+    .sui-q-block { margin-bottom: 10px; }
+    .sui-q-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .sui-q-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--rule-mid);
+      border-radius: 3px;
+      padding: 6px 8px;
+      font-family: 'Geist', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+    .sui-q-input.active-field {
+      border-color: var(--gold-border);
+      background: rgba(184,145,90,0.03);
+    }
+    .sui-progress-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--rule);
+    }
+    .sui-prog-track {
+      flex: 1;
+      height: 3px;
+      background: var(--rule);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .sui-prog-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    .sui-prog-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 8px;
+      color: var(--ink-dim);
+      white-space: nowrap;
+    }
+
+    /* Sliders (Author DNA) */
+    .sui-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 9px;
+    }
+    .sui-slider-label {
+      font-family: 'Geist', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--ink-mid);
+      width: 88px;
+      flex-shrink: 0;
+    }
+    .sui-slider-track {
+      flex: 1;
+      height: 3px;
+      background: var(--rule);
+      border-radius: 2px;
+      position: relative;
+    }
+    .sui-slider-fill {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    .sui-slider-thumb {
+      position: absolute;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid var(--gold);
+      top: 50%; transform: translateY(-50%);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+    .sui-complete-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 11px;
+      padding: 5px 8px;
+      background: rgba(39,174,96,0.08);
+      border: 1px solid rgba(39,174,96,0.2);
+      border-radius: 3px;
+    }
+    .sui-check { color: #27AE60; font-size: 10px; font-family: 'Geist Mono', monospace; }
+    .sui-complete-text {
+      font-family: 'Geist', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      color: #27AE60;
+    }
+
+    /* Story Excavator mini */
+    .sui-ai-bubble {
+      background: #F0ECE6;
+      border: 1px solid var(--rule);
+      border-radius: 3px 10px 10px 10px;
+      padding: 8px 10px;
+      font-family: 'Geist', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .sui-mic-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--rule);
+    }
+    .sui-mic {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 4px rgba(184,145,90,0.12);
+    }
+    .sui-mic-icon-inner {
+      width: 2px; height: 7px;
+      background: white;
+      border-radius: 1px;
+    }
+    .sui-mic-text {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+    }
+    .sui-story-count {
+      font-family: 'Geist', sans-serif;
+      font-size: 10px;
+      color: var(--ink-dim);
+      margin-left: auto;
+    }
+    .sui-story-count strong {
+      font-family: 'Geist', sans-serif;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* Source Library */
+    .sui-url-input {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+    .sui-url-field {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--rule-mid);
+      border-radius: 3px;
+      padding: 5px 8px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      color: var(--ink-dim);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .sui-url-btn {
+      background: var(--ink);
+      color: white;
+      font-family: 'Geist', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      padding: 5px 8px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .sui-source-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .sui-source-item:last-of-type { border-bottom: none; }
+    .sui-source-check {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: rgba(39,174,96,0.1);
+      border: 1px solid rgba(39,174,96,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .sui-source-check::after {
+      content: '✓';
+      font-size: 8px;
+      color: #27AE60;
+    }
+    .sui-source-name {
+      font-family: 'Geist', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .sui-source-meta {
+      font-family: 'Geist Mono', monospace;
+      font-size: 8px;
+      color: var(--ink-dim);
+      margin-left: auto;
+    }
+
+    /* Chapter outline mini */
+    .sui-movement {
+      margin-bottom: 8px;
+    }
+    .sui-movement-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sui-movement-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+    .sui-mv-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+      margin-bottom: 3px;
+    }
+    .sui-mv-dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .sui-mv-dot.dim { background: var(--rule-mid); }
+    .sui-mv-text {
+      font-family: 'Geist', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--ink-mid);
+      line-height: 1.4;
+    }
+    .sui-write-btn {
+      margin-top: 10px;
+      width: 100%;
+      background: var(--gold);
+      color: white;
+      font-family: 'Geist', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 7px 12px;
+      border-radius: 3px;
+      text-align: center;
+      letter-spacing: 0.03em;
+    }
+
+    /* Chapter writer mini */
+    .sui-chapter-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .sui-chapter-title {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--ink);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .sui-text-line {
+      height: 7px;
+      background: rgba(14,12,11,0.07);
+      border-radius: 2px;
+      margin-bottom: 7px;
+    }
+    .sui-stream-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .sui-stream-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 7px;
+      background: rgba(184,145,90,0.08);
+      border: 1px solid var(--gold-border);
+      border-radius: 3px;
+    }
+    .sui-stream-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 1.3s ease-in-out infinite;
+    }
+    .sui-stream-text {
+      font-family: 'Geist Mono', monospace;
+      font-size: 8px;
+      color: var(--gold);
+    }
+    .sui-word-count {
+      font-family: 'Geist Mono', monospace;
+      font-size: 8px;
+      color: var(--ink-dim);
+      margin-left: auto;
+    }
+
+    /* Publish ready mini */
+    .sui-ready-check {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .sui-ready-check:last-of-type { border-bottom: none; }
+    .sui-check-icon {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: rgba(39,174,96,0.12);
+      border: 1px solid rgba(39,174,96,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .sui-check-icon::after { content: '✓'; font-size: 8px; color: #27AE60; }
+    .sui-ready-text {
+      font-family: 'Geist', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .sui-ready-meta {
+      font-family: 'Geist Mono', monospace;
+      font-size: 8px;
+      color: var(--ink-dim);
+      margin-left: auto;
+    }
+    .sui-export-btns {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .sui-export-btn {
+      flex: 1;
+      text-align: center;
+      padding: 7px 4px;
+      border-radius: 3px;
+      font-family: 'Geist', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+    }
+    .sui-export-btn.primary { background: var(--ink); color: white; }
+    .sui-export-btn.secondary { background: transparent; border: 1px solid var(--rule-mid); color: var(--ink-mid); }
 
     /* ─── INLINE MOCKUPS (shared chrome styles) ─── */
     .inline-mockup {
@@ -1576,9 +1996,9 @@
       .strip-cell { border-bottom: 1px solid var(--rule); }
       .who-block { grid-template-columns: 1fr; gap: 16px; }
       .pipeline-row { grid-template-columns: 48px 1fr; gap: 24px; }
-      .pipeline-row .step-tag { display: none; }
+      .pipeline-row .step-ui { display: none; }
       .feature-grid { grid-template-columns: 1fr; }
-      .feature-cell:nth-child(2n) { border-right: 1px solid var(--rule); }
+      .feature-cell:nth-child(2n) { border-right: none; }
       .feature-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
       .feature-cell:last-child { border-bottom: none; }
       .testi-block { grid-template-columns: 1fr; gap: 24px; }
@@ -1608,8 +2028,8 @@
       <div class="hero-vline"></div>
       <p class="hero-subhead reveal" data-delay="0.1">Unarchive learns your voice, mines your stories, and streams your manuscript chapter by chapter — in hours, not years.</p>
       <div class="hero-cta reveal" data-delay="0.2">
-        <a href="#pricing" class="btn-gold">Claim Your Access — $695</a>
-        <span class="hero-meta">$695 · 3 Months Full Access · Export to Word &amp; PDF</span>
+        <a href="#pricing" class="btn-gold">Begin Your Book</a>
+        <span class="hero-meta">3 Months Full Access · Export to Word &amp; PDF</span>
       </div>
       <!-- Mockup -->
       <div class="mockup-wrapper">
@@ -1847,7 +2267,23 @@
           <div class="step-title">Configure your entire book in 5 questions</div>
           <p class="step-desc">Answer five foundational questions: topic, target reader, transformation promised, tone, and writing style. Style sliders let you calibrate between personal and framework-driven, conversational and authoritative. Every AI output for your book flows from this foundation.</p>
         </div>
-        <div class="step-tag">5-Question Wizard</div>
+        <div class="step-ui">
+          <div class="sui-chrome"><span class="sui-dot sui-dot-r"></span><span class="sui-dot sui-dot-y"></span><span class="sui-dot sui-dot-g"></span><span class="sui-chrome-title">Book Setup</span></div>
+          <div class="sui-body">
+            <div class="sui-q-block">
+              <div class="sui-q-label">01 — What is this book about?</div>
+              <div class="sui-q-input">Faith-based recovery from personal loss</div>
+            </div>
+            <div class="sui-q-block">
+              <div class="sui-q-label">02 — Who is your reader?</div>
+              <div class="sui-q-input active-field">Believers aged 35–55 facing crisis&#x2026;</div>
+            </div>
+            <div class="sui-progress-row">
+              <div class="sui-prog-track"><div class="sui-prog-fill" style="width:40%"></div></div>
+              <span class="sui-prog-label">Step 2 of 5</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="pipeline-row" data-delay="0">
@@ -1857,7 +2293,28 @@
           <div class="step-title">The AI adopts your exact voice</div>
           <p class="step-desc">You capture your background, core beliefs, writing personality, and how you naturally speak. This DNA is injected into every chapter the AI writes. The output doesn't sound like AI — it sounds like you gave a sermon and someone transcribed it perfectly.</p>
         </div>
-        <div class="step-tag">7-Field Voice Profile</div>
+        <div class="step-ui">
+          <div class="sui-chrome"><span class="sui-dot sui-dot-r"></span><span class="sui-dot sui-dot-y"></span><span class="sui-dot sui-dot-g"></span><span class="sui-chrome-title">Author DNA</span></div>
+          <div class="sui-body">
+            <div class="sui-slider-row">
+              <span class="sui-slider-label">Conversational</span>
+              <div class="sui-slider-track"><div class="sui-slider-fill" style="width:38%"></div><div class="sui-slider-thumb" style="left:34%"></div></div>
+            </div>
+            <div class="sui-slider-row">
+              <span class="sui-slider-label">Authoritative</span>
+              <div class="sui-slider-track"><div class="sui-slider-fill" style="width:65%"></div><div class="sui-slider-thumb" style="left:61%"></div></div>
+            </div>
+            <div class="sui-slider-row">
+              <span class="sui-slider-label">Narrative</span>
+              <div class="sui-slider-track"><div class="sui-slider-fill" style="width:72%"></div><div class="sui-slider-thumb" style="left:68%"></div></div>
+            </div>
+            <div class="sui-slider-row">
+              <span class="sui-slider-label">Framework</span>
+              <div class="sui-slider-track"><div class="sui-slider-fill" style="width:50%"></div><div class="sui-slider-thumb" style="left:46%"></div></div>
+            </div>
+            <div class="sui-complete-badge"><span class="sui-check">✓</span><span class="sui-complete-text">7 of 7 fields complete</span></div>
+          </div>
+        </div>
       </div>
 
       <div class="pipeline-row" data-delay="0">
@@ -1867,7 +2324,17 @@
           <div class="step-title">Talk into your microphone. We build your story vault.</div>
           <p class="step-desc">An AI interviews you to mine your personal stories, experiences, and real-life examples. You respond conversationally, exactly as you'd tell a story to a friend. The system builds a structured Story Bank — a library of your anecdotes that gets woven into chapters automatically. No notes required. Just speak.</p>
         </div>
-        <div class="step-tag">AI Interview + Voice-to-Text</div>
+        <div class="step-ui">
+          <div class="sui-chrome"><span class="sui-dot sui-dot-r"></span><span class="sui-dot sui-dot-y"></span><span class="sui-dot sui-dot-g"></span><span class="sui-chrome-title">Story Excavator</span></div>
+          <div class="sui-body">
+            <div class="sui-ai-bubble">"Tell me about a moment when everything changed for you. Where were you, and what did you notice first?"</div>
+            <div class="sui-mic-row">
+              <div class="sui-mic"><div class="sui-mic-icon-inner"></div></div>
+              <span class="sui-mic-text">Recording&#x2026;</span>
+              <span class="sui-story-count"><strong>12</strong> stories saved</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="pipeline-row" data-delay="0">
@@ -1877,7 +2344,30 @@
           <div class="step-title">Your sermons and frameworks, ingested</div>
           <p class="step-desc">Paste YouTube links to your existing sermons — the system transcribes them automatically. Or paste raw text from your notes, teachings, or existing writing. This becomes the teaching content the AI draws from when writing your chapters. If you've already built content, it feeds straight in.</p>
         </div>
-        <div class="step-tag">YouTube Transcription + Text</div>
+        <div class="step-ui">
+          <div class="sui-chrome"><span class="sui-dot sui-dot-r"></span><span class="sui-dot sui-dot-y"></span><span class="sui-dot sui-dot-g"></span><span class="sui-chrome-title">Source Library</span></div>
+          <div class="sui-body">
+            <div class="sui-url-input">
+              <div class="sui-url-field">youtube.com/watch?v=xK3j&#x2026;</div>
+              <div class="sui-url-btn">Transcribe</div>
+            </div>
+            <div class="sui-source-item">
+              <div class="sui-source-check"></div>
+              <span class="sui-source-name">Sunday Service #42</span>
+              <span class="sui-source-meta">6,240 wds</span>
+            </div>
+            <div class="sui-source-item">
+              <div class="sui-source-check"></div>
+              <span class="sui-source-name">Leadership Summit Talk</span>
+              <span class="sui-source-meta">4,810 wds</span>
+            </div>
+            <div class="sui-source-item">
+              <div class="sui-source-check"></div>
+              <span class="sui-source-name">Raw chapter notes (paste)</span>
+              <span class="sui-source-meta">1,120 wds</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="pipeline-row" data-delay="0">
@@ -1887,7 +2377,22 @@
           <div class="step-title">A full architectural outline before you write a word</div>
           <p class="step-desc">The AI generates a chapter-by-chapter outline structured across three movements. Each chapter gets a core question, central concept, reader entry and exit state, practical takeaway, and an assigned story from your Story Bank. Drag to reorder. Edit every field. The outline is yours before writing begins.</p>
         </div>
-        <div class="step-tag">3-Movement Architecture</div>
+        <div class="step-ui">
+          <div class="sui-chrome"><span class="sui-dot sui-dot-r"></span><span class="sui-dot sui-dot-y"></span><span class="sui-dot sui-dot-g"></span><span class="sui-chrome-title">Chapter 3 Outline</span></div>
+          <div class="sui-body">
+            <div class="sui-movement">
+              <div class="sui-movement-label">Movement I</div>
+              <div class="sui-mv-point"><span class="sui-mv-dot"></span><span class="sui-mv-text">Reader enters in the midnight moment</span></div>
+              <div class="sui-mv-point"><span class="sui-mv-dot"></span><span class="sui-mv-text">Anchor — Story Bank #1</span></div>
+            </div>
+            <div class="sui-movement">
+              <div class="sui-movement-label">Movement II</div>
+              <div class="sui-mv-point"><span class="sui-mv-dot"></span><span class="sui-mv-text">The atmosphere shifts before anything changes</span></div>
+              <div class="sui-mv-point"><span class="sui-mv-dot dim"></span><span class="sui-mv-text">Framework: 4 markers of divine interruption</span></div>
+            </div>
+            <div class="sui-write-btn">Write This Chapter →</div>
+          </div>
+        </div>
       </div>
 
       <div class="pipeline-row" data-delay="0">
@@ -1897,7 +2402,21 @@
           <div class="step-title">One button. Watch your chapter appear.</div>
           <p class="step-desc">Click Write This Chapter. Watch the AI stream the full chapter live — word by word — in your 3-panel studio. It writes with complete context: your DNA, your Story Bank, your Source Library, your book configuration, and every previously written chapter. The result sounds like you, connects to everything, and never repeats itself.</p>
         </div>
-        <div class="step-tag">Real-Time Streaming</div>
+        <div class="step-ui">
+          <div class="sui-chrome"><span class="sui-dot sui-dot-r"></span><span class="sui-dot sui-dot-y"></span><span class="sui-dot sui-dot-g"></span><span class="sui-chrome-title">Chapter Writer</span></div>
+          <div class="sui-body">
+            <div class="sui-chapter-label">Chapter 3 · Movement II</div>
+            <div class="sui-chapter-title">When God Shows Up in the Dark</div>
+            <div class="sui-text-line" style="width:100%"></div>
+            <div class="sui-text-line" style="width:87%"></div>
+            <div class="sui-text-line" style="width:94%"></div>
+            <div class="sui-text-line" style="width:63%"></div>
+            <div class="sui-stream-row">
+              <div class="sui-stream-pill"><span class="sui-stream-dot"></span><span class="sui-stream-text">Writing in your voice</span></div>
+              <span class="sui-word-count">1,842 words</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="pipeline-row" data-delay="0">
@@ -1907,7 +2426,19 @@
           <div class="step-title">Professional manuscript in one export</div>
           <p class="step-desc">When all chapters are complete, finalize your manuscript: table of contents, title page, proper margins, page numbers, chapter spacing, About the Author, foreword, intro, conclusion, and optional CTA page. Export as a professional .docx or .pdf. Ready for Amazon KDP, IngramSpark, or your publisher.</p>
         </div>
-        <div class="step-tag">Export to .docx + .pdf</div>
+        <div class="step-ui">
+          <div class="sui-chrome"><span class="sui-dot sui-dot-r"></span><span class="sui-dot sui-dot-y"></span><span class="sui-dot sui-dot-g"></span><span class="sui-chrome-title">Manuscript Ready</span></div>
+          <div class="sui-body">
+            <div class="sui-ready-check"><div class="sui-check-icon"></div><span class="sui-ready-text">6 of 6 Chapters complete</span></div>
+            <div class="sui-ready-check"><div class="sui-check-icon"></div><span class="sui-ready-text">42,810 words</span><span class="sui-ready-meta">~171 pages</span></div>
+            <div class="sui-ready-check"><div class="sui-check-icon"></div><span class="sui-ready-text">Table of Contents</span></div>
+            <div class="sui-ready-check"><div class="sui-check-icon"></div><span class="sui-ready-text">About the Author page</span></div>
+            <div class="sui-export-btns">
+              <div class="sui-export-btn primary">↓ Export .docx</div>
+              <div class="sui-export-btn secondary">↓ .pdf</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -2005,11 +2536,6 @@
           <span class="feat-label">Tracked Changes</span>
           <div class="feat-title">Edit like a professional editor</div>
           <p class="feat-body">Highlight any text in any chapter and trigger an AI rewrite. Changes appear as insertions and deletions — exactly like a human editor's markup. Accept or reject every single change individually.</p>
-        </div>
-        <div class="feature-cell reveal" data-delay="0.07">
-          <span class="feat-label">Voice to Text</span>
-          <div class="feat-title">Don't want to type? Don't.</div>
-          <p class="feat-body">Every major input field across the entire platform has a microphone button. Click, speak, done. Especially powerful during the Story Excavator when you're narrating your testimony.</p>
         </div>
         <div class="feature-cell reveal" data-delay="0.14">
           <span class="feat-label">Manuscript Studio</span>
@@ -2144,9 +2670,9 @@
         <p style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--ink-dim);margin-top:-28px;margin-bottom:32px">(max 5 books)</p>
         <div class="card-divider"></div>
         <ul class="feature-list">
-          <li><span class="check">✓</span><span>Write up to 3 complete books</span></li>
+          <li><span class="check">✓</span><span>Write up to 5 complete books</span></li>
           <li><span class="check">✓</span><span>Full 7-stage pipeline — Author DNA through Publish Ready</span></li>
-          <li><span class="check">✓</span><span>Story Excavator with AI interview and voice-to-text</span></li>
+          <li><span class="check">✓</span><span>Story Excavator with AI interview and transcription</span></li>
           <li><span class="check">✓</span><span>Source Library — YouTube transcription and text paste</span></li>
           <li><span class="check">✓</span><span>Real-time streaming chapter writer</span></li>
           <li><span class="check">✓</span><span>Tracked changes and AI editing in the studio</span></li>
@@ -2278,11 +2804,11 @@
   <footer>
     <div class="wrap">
       <a href="#" class="footer-logo">Unarchive</a>
-      <nav class="footer-links">
+      <div class="footer-links">
         <a href="#">Terms of Service</a>
         <a href="#">Privacy Policy</a>
         <a href="mailto:hello@unarchive.ai">Contact Support</a>
-      </nav>
+      </div>
     </div>
   </footer>
 
