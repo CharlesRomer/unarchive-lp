@@ -23,11 +23,11 @@
       --bg-dark:      #0E0C0B;
       --bg-card:      #FFFFFF;
       --ink:          #0E0C0B;
-      --ink-mid:      rgba(14,12,11,0.58);
-      --ink-dim:      rgba(14,12,11,0.35);
+      --ink-mid:      rgba(14,12,11,0.68);
+      --ink-dim:      rgba(14,12,11,0.48);
       --dark-cream:   #F0EBE1;
-      --dark-mid:     rgba(240,235,225,0.55);
-      --dark-dim:     rgba(240,235,225,0.28);
+      --dark-mid:     rgba(240,235,225,0.72);
+      --dark-dim:     rgba(240,235,225,0.45);
       --gold:         #B8915A;
       --gold-light:   #C9A870;
       --gold-dim:     rgba(184,145,90,0.12);
@@ -42,7 +42,7 @@
       background: var(--bg);
       color: var(--ink);
       font-family: 'Geist', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       font-size: 16px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
@@ -80,8 +80,8 @@
     /* ─── TYPOGRAPHY UTILS ─── */
     .eyebrow {
       font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.20em;
+      font-size: 11px;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--gold);
       display: block;
@@ -176,7 +176,7 @@
     }
     .hero-subhead {
       font-family: 'Geist', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       font-size: 18px;
       line-height: 1.72;
       color: var(--ink-mid);
@@ -476,7 +476,7 @@
     }
     .scribe-body {
       font-family: 'Geist', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       font-size: 16px;
       color: var(--ink-mid);
       max-width: 540px;
@@ -559,7 +559,7 @@
     }
     .who-body {
       font-family: 'Geist', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       font-size: 15px;
       color: var(--ink-mid);
       line-height: 1.75;
@@ -622,7 +622,7 @@
     }
     .step-desc {
       font-family: 'Geist', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       font-size: 15px;
       color: var(--ink-mid);
       line-height: 1.78;
@@ -694,7 +694,7 @@
     }
     .feat-body {
       font-family: 'Geist', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       font-size: 14px;
       color: var(--ink-mid);
       line-height: 1.7;
@@ -954,7 +954,7 @@
     }
     .obj-a {
       font-family: 'Geist', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       font-size: 14.5px;
       color: var(--ink-mid);
       line-height: 1.78;
@@ -1008,7 +1008,7 @@
     .faq-answer-inner {
       padding-bottom: 24px;
       font-family: 'Geist', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       font-size: 15px;
       color: var(--ink-mid);
       line-height: 1.78;
@@ -1079,6 +1079,491 @@
     }
     .footer-links a:hover { color: var(--ink); }
 
+    /* ─── INLINE MOCKUPS (shared chrome styles) ─── */
+    .inline-mockup {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--rule-mid);
+      box-shadow:
+        0 2px 4px rgba(14,12,11,0.04),
+        0 8px 20px rgba(14,12,11,0.07),
+        0 24px 56px rgba(14,12,11,0.10);
+      background: var(--bg-card);
+    }
+    .inline-chrome {
+      height: 36px;
+      background: #EDEAE4;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      gap: 7px;
+      flex-shrink: 0;
+    }
+    .inline-url {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--ink-dim);
+      background: rgba(14,12,11,0.06);
+      padding: 3px 14px;
+      border-radius: 20px;
+      margin: 0 auto;
+    }
+
+    /* ── Mockup A: Story Excavator ── */
+    .exc-body {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      height: 300px;
+    }
+    .exc-main {
+      padding: 24px 28px;
+      background: #FDFCFA;
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow: hidden;
+    }
+    .exc-header-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 4px;
+    }
+    .exc-avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .exc-avatar-inner {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.7;
+    }
+    .exc-who {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .exc-question {
+      background: #F0ECE6;
+      border-radius: 0 10px 10px 10px;
+      padding: 12px 16px;
+      font-family: 'Geist', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.55;
+      max-width: 88%;
+      border: 1px solid var(--rule);
+    }
+    .exc-mic-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--rule);
+    }
+    .exc-mic-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 4px rgba(184,145,90,0.15);
+      animation: mic-ring 1.8s ease-in-out infinite;
+    }
+    @keyframes mic-ring { 0%,100%{box-shadow:0 0 0 4px rgba(184,145,90,0.15)} 50%{box-shadow:0 0 0 8px rgba(184,145,90,0.08)} }
+    .exc-mic-icon {
+      width: 3px; height: 10px;
+      background: #fff;
+      border-radius: 2px;
+      position: relative;
+    }
+    .exc-mic-icon::before {
+      content: '';
+      position: absolute;
+      width: 9px; height: 9px;
+      border: 2px solid #fff;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      top: 0; left: -3px;
+    }
+    .exc-transcript {
+      flex: 1;
+    }
+    .exc-transcript-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .exc-transcript-text {
+      font-family: 'Geist', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ink-mid);
+      line-height: 1.55;
+    }
+    .exc-waveform {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      height: 20px;
+    }
+    .exc-bar {
+      width: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      opacity: 0.7;
+    }
+    /* Story Bank sidebar */
+    .exc-sidebar {
+      background: #EDE9E2;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow: hidden;
+    }
+    .exc-sidebar-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 2px;
+    }
+    .story-card {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 9px 12px;
+      font-family: 'Geist', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .story-card.adding {
+      border-color: var(--gold-border);
+      background: rgba(184,145,90,0.06);
+      color: var(--gold);
+    }
+    .story-card .story-num {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      color: var(--ink-dim);
+      display: block;
+      margin-top: 3px;
+    }
+    .exc-count {
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid var(--rule);
+    }
+    .exc-count-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      color: var(--ink-dim);
+      letter-spacing: 0.12em;
+    }
+    .exc-count-num {
+      font-family: 'Fraunces', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    /* ── Mockup B: Chapter Outline Builder ── */
+    .outline-body {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      height: 320px;
+    }
+    .outline-sidebar {
+      background: #EDE9E2;
+      border-right: 1px solid var(--rule);
+      padding: 18px 14px;
+      overflow: hidden;
+    }
+    .outline-sidebar-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 10px;
+    }
+    .outline-chapter {
+      padding: 8px 10px;
+      border-radius: 3px;
+      margin-bottom: 3px;
+      cursor: default;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .outline-chapter.active {
+      background: rgba(184,145,90,0.10);
+      border: 1px solid var(--gold-border);
+    }
+    .outline-drag {
+      width: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex-shrink: 0;
+      opacity: 0.3;
+    }
+    .outline-drag span {
+      width: 100%;
+      height: 1px;
+      background: var(--ink);
+      display: block;
+    }
+    .outline-ch-num {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      color: var(--ink-dim);
+      flex-shrink: 0;
+    }
+    .outline-ch-name {
+      font-family: 'Geist', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ink-mid);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .outline-chapter.active .outline-ch-name { color: var(--ink); font-weight: 500; }
+    .outline-main {
+      background: white;
+      padding: 24px 28px;
+      overflow: hidden;
+    }
+    .outline-main-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .outline-main-title {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 18px;
+      color: var(--ink);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .movement-block {
+      margin-bottom: 14px;
+    }
+    .movement-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .movement-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+    .movement-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+    .mv-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .mv-dot.dim { background: var(--rule-mid); }
+    .movement-point span {
+      font-family: 'Geist', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ink-mid);
+      line-height: 1.45;
+    }
+    .outline-actions {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      gap: 10px;
+    }
+    .outline-btn-primary {
+      font-family: 'Geist', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--gold);
+      color: white;
+      padding: 7px 16px;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
+    }
+    .outline-btn-secondary {
+      font-family: 'Geist', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      background: transparent;
+      color: var(--ink-mid);
+      padding: 7px 14px;
+      border-radius: 3px;
+      border: 1px solid var(--rule-mid);
+    }
+    .outline-main {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Mockup C: Tracked Changes ── */
+    .tracked-body {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      height: 300px;
+    }
+    .tracked-main {
+      padding: 28px 36px;
+      background: white;
+      border-right: 1px solid var(--rule);
+      overflow: hidden;
+    }
+    .tracked-chapter-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .tracked-chapter-title {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 17px;
+      color: var(--ink);
+      margin-bottom: 18px;
+    }
+    .tracked-para {
+      font-family: 'Geist', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .tracked-del {
+      text-decoration: line-through;
+      color: #C0392B;
+      background: rgba(192,57,43,0.07);
+      padding: 0 1px;
+      border-radius: 2px;
+    }
+    .tracked-ins {
+      color: #27AE60;
+      background: rgba(39,174,96,0.09);
+      padding: 0 1px;
+      border-radius: 2px;
+      border-bottom: 1px solid rgba(39,174,96,0.4);
+    }
+    .tracked-sidebar {
+      background: #F5F1EB;
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+    }
+    .tracked-sidebar-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 2px;
+    }
+    .change-item {
+      padding: 8px 10px;
+      border-radius: 4px;
+      border: 1px solid transparent;
+    }
+    .change-item.del-item {
+      background: rgba(192,57,43,0.06);
+      border-color: rgba(192,57,43,0.15);
+    }
+    .change-item.ins-item {
+      background: rgba(39,174,96,0.06);
+      border-color: rgba(39,174,96,0.15);
+    }
+    .change-type {
+      font-family: 'Geist Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    .del-item .change-type { color: #C0392B; }
+    .ins-item .change-type { color: #27AE60; }
+    .change-text {
+      font-family: 'Geist', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+    .change-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .ca-btn {
+      font-family: 'Geist Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      border-radius: 2px;
+      cursor: default;
+    }
+    .ca-accept { background: rgba(39,174,96,0.12); color: #27AE60; border: 1px solid rgba(39,174,96,0.2); }
+    .ca-reject { background: rgba(192,57,43,0.08); color: #C0392B; border: 1px solid rgba(192,57,43,0.15); }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
       .wrap, .wrap-narrow { padding: 0 24px; }
@@ -1123,8 +1608,8 @@
       <div class="hero-vline"></div>
       <p class="hero-subhead reveal" data-delay="0.1">Unarchive learns your voice, mines your stories, and streams your manuscript chapter by chapter — in hours, not years.</p>
       <div class="hero-cta reveal" data-delay="0.2">
-        <a href="#pricing" class="btn-gold">Claim Your Access — $497</a>
-        <span class="hero-meta">$497 · 3 Months Full Access · Export to Word &amp; PDF</span>
+        <a href="#pricing" class="btn-gold">Claim Your Access — $695</a>
+        <span class="hero-meta">$695 · 3 Months Full Access · Export to Word &amp; PDF</span>
       </div>
       <!-- Mockup -->
       <div class="mockup-wrapper">
@@ -1219,9 +1704,9 @@
           <p class="problem-note reveal" data-delay="0.2">It is not a discipline problem. It is a translation problem.</p>
         </div>
         <div>
-          <p class="reveal" style="font-family:'Geist',sans-serif;font-weight:300;font-size:16px;line-height:1.8;color:var(--ink-mid);margin-bottom:20px" data-delay="0">You have a message. You have years of sermons, a powerful testimony, or a framework that sets people free. But every time you sit down to write, the blinking cursor wins. The translation from raw thought to a structured chapter feels impossible.</p>
-          <p class="reveal" style="font-family:'Geist',sans-serif;font-weight:300;font-size:16px;line-height:1.8;color:var(--ink-mid);margin-bottom:20px" data-delay="0.1">The real issue is not discipline. It is that typing is not how you process the world. You are a speaker, a teacher, a leader. Traditional word processors give you a blank screen and expect you to do the entire job alone.</p>
-          <p class="reveal" style="font-family:'Geist',sans-serif;font-weight:300;font-size:16px;line-height:1.8;color:var(--ink-mid)" data-delay="0.2">Standard AI makes it worse. ChatGPT sounds like a soulless robot. It forgets your story by chapter three. It strips the conviction right out of your message. It was not built for people like you.</p>
+          <p class="reveal" style="font-family:'Geist',sans-serif;font-weight:400;font-size:16px;line-height:1.8;color:var(--ink-mid);margin-bottom:20px" data-delay="0">You have a message. You have years of sermons, a powerful testimony, or a framework that sets people free. But every time you sit down to write, the blinking cursor wins. The translation from raw thought to a structured chapter feels impossible.</p>
+          <p class="reveal" style="font-family:'Geist',sans-serif;font-weight:400;font-size:16px;line-height:1.8;color:var(--ink-mid);margin-bottom:20px" data-delay="0.1">The real issue is not discipline. It is that typing is not how you process the world. You are a speaker, a teacher, a leader. Traditional word processors give you a blank screen and expect you to do the entire job alone.</p>
+          <p class="reveal" style="font-family:'Geist',sans-serif;font-weight:400;font-size:16px;line-height:1.8;color:var(--ink-mid)" data-delay="0.2">Standard AI makes it worse. ChatGPT sounds like a soulless robot. It forgets your story by chapter three. It strips the conviction right out of your message. It was not built for people like you.</p>
         </div>
       </div>
     </div>
@@ -1234,6 +1719,55 @@
       <p class="pull-quote reveal" data-delay="0.05">"It doesn't replace your soul with a robot. It acts as a digital scribe — exactly like the Apostle Paul used in writing his letters."</p>
       <p class="scribe-body reveal" data-delay="0.15">We built a system that learns who you are before it writes a single word. It extracts your voice. It mines your stories. Then it writes chapter by chapter from the material you actually have.</p>
     </div>
+    <!-- Story Excavator Mockup -->
+    <div class="wrap" style="margin-top:56px">
+      <div class="inline-mockup reveal" data-delay="0.1">
+        <div class="inline-chrome">
+          <span class="traffic-light tl-r"></span>
+          <span class="traffic-light tl-y"></span>
+          <span class="traffic-light tl-g"></span>
+          <span class="inline-url">unarchive.ai/story-excavator</span>
+        </div>
+        <div class="exc-body">
+          <div class="exc-main">
+            <div class="exc-header-bar">
+              <div class="exc-avatar"><div class="exc-avatar-inner"></div></div>
+              <span class="exc-who">Archie · Story Excavator</span>
+            </div>
+            <div class="exc-question">"Tell me about a specific moment when you realized God was moving in your situation — not in hindsight, but right in the middle of it. What were the circumstances around you?"</div>
+            <div class="exc-mic-row">
+              <div class="exc-mic-btn">
+                <div class="exc-mic-icon"></div>
+              </div>
+              <div class="exc-transcript">
+                <div class="exc-transcript-label">Transcribing your answer</div>
+                <div class="exc-transcript-text">It was about two in the morning. The hospital had gone quiet. I remember the lights in the hallway felt different — like something had shifted...</div>
+              </div>
+            </div>
+          </div>
+          <div class="exc-sidebar">
+            <div class="exc-sidebar-label">Story Bank</div>
+            <div class="story-card">
+              The Hospital Room, 2018
+              <span class="story-num">Story #1 · 340 words</span>
+            </div>
+            <div class="story-card">
+              Losing the Business
+              <span class="story-num">Story #2 · 510 words</span>
+            </div>
+            <div class="story-card adding">
+              Two in the Morning...
+              <span class="story-num">Story #3 · Recording</span>
+            </div>
+            <div class="exc-count">
+              <div class="exc-count-label">Stories Captured</div>
+              <div class="exc-count-num">3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="wrap" style="margin-top:0">
       <hr class="scribe-hr" />
       <div class="pipeline-strip">
@@ -1378,6 +1912,81 @@
     </div>
   </section>
 
+  <!-- ─── CHAPTER OUTLINE MOCKUP (between pipeline + studio) ─── -->
+  <div style="padding:0 0 100px;position:relative;z-index:1;border-top:1px solid var(--rule)">
+    <div class="wrap" style="padding-top:80px">
+      <div style="text-align:center;margin-bottom:48px">
+        <span class="eyebrow reveal">Chapter Builder</span>
+        <p class="reveal" style="font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:clamp(24px,3vw,36px);color:var(--ink);line-height:1.2;margin:0 auto;max-width:540px" data-delay="0.06">A complete architectural blueprint before a single word is written.</p>
+      </div>
+      <div class="inline-mockup reveal" data-delay="0.12">
+        <div class="inline-chrome">
+          <span class="traffic-light tl-r"></span>
+          <span class="traffic-light tl-y"></span>
+          <span class="traffic-light tl-g"></span>
+          <span class="inline-url">unarchive.ai/chapter-builder</span>
+        </div>
+        <div class="outline-body">
+          <div class="outline-sidebar">
+            <div class="outline-sidebar-label">Book Chapters</div>
+            <div class="outline-chapter">
+              <div class="outline-drag"><span></span><span></span><span></span></div>
+              <span class="outline-ch-num">01</span>
+              <span class="outline-ch-name">Introduction: Why This Matters</span>
+            </div>
+            <div class="outline-chapter">
+              <div class="outline-drag"><span></span><span></span><span></span></div>
+              <span class="outline-ch-num">02</span>
+              <span class="outline-ch-name">The Breaking Point</span>
+            </div>
+            <div class="outline-chapter active">
+              <div class="outline-drag"><span></span><span></span><span></span></div>
+              <span class="outline-ch-num">03</span>
+              <span class="outline-ch-name">When God Shows Up in the Dark</span>
+            </div>
+            <div class="outline-chapter">
+              <div class="outline-drag"><span></span><span></span><span></span></div>
+              <span class="outline-ch-num">04</span>
+              <span class="outline-ch-name">The Framework That Changed Everything</span>
+            </div>
+            <div class="outline-chapter">
+              <div class="outline-drag"><span></span><span></span><span></span></div>
+              <span class="outline-ch-num">05</span>
+              <span class="outline-ch-name">Walking Others Through It</span>
+            </div>
+            <div class="outline-chapter">
+              <div class="outline-drag"><span></span><span></span><span></span></div>
+              <span class="outline-ch-num">06</span>
+              <span class="outline-ch-name">Your Next Step</span>
+            </div>
+          </div>
+          <div class="outline-main">
+            <div class="outline-main-label">Chapter 3 · Active Outline</div>
+            <div class="outline-main-title">When God Shows Up in the Dark</div>
+            <div class="movement-block">
+              <div class="movement-label">Movement I — Entry</div>
+              <div class="movement-point"><span class="mv-dot"></span><span>Reader enters feeling isolated — their midnight moment has no witnesses</span></div>
+              <div class="movement-point"><span class="mv-dot"></span><span>Anchor story: The Hospital Room (Story Bank #1)</span></div>
+            </div>
+            <div class="movement-block">
+              <div class="movement-label">Movement II — Encounter</div>
+              <div class="movement-point"><span class="mv-dot"></span><span>The moment the atmosphere shifted — what changed before anything visibly changed</span></div>
+              <div class="movement-point"><span class="mv-dot dim"></span><span>Framework: The 4 markers of divine interruption</span></div>
+            </div>
+            <div class="movement-block">
+              <div class="movement-label">Movement III — Exit</div>
+              <div class="movement-point"><span class="mv-dot dim"></span><span>Reader exits with language for what they experienced but could not name</span></div>
+            </div>
+            <div class="outline-actions">
+              <div class="outline-btn-primary">Write This Chapter</div>
+              <div class="outline-btn-secondary">Edit Outline</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ─── STUDIO FEATURES ─── -->
   <section id="studio">
     <div class="wrap">
@@ -1416,6 +2025,43 @@
           <span class="feat-label">Archie — Your Guide</span>
           <div class="feat-title">Built for non-technical authors</div>
           <p class="feat-body">A built-in tutorial guide named Archie walks you through every single step on screen with explanations and encouragement. If you can fill out a form and speak into a microphone, you can write your book.</p>
+        </div>
+      </div>
+
+      <!-- Tracked Changes mockup -->
+      <div class="inline-mockup reveal" style="margin-top:64px" data-delay="0.08">
+        <div class="inline-chrome">
+          <span class="traffic-light tl-r"></span>
+          <span class="traffic-light tl-y"></span>
+          <span class="traffic-light tl-g"></span>
+          <span class="inline-url">unarchive.ai/studio · Tracked Changes</span>
+        </div>
+        <div class="tracked-body">
+          <div class="tracked-main">
+            <div class="tracked-chapter-label">Chapter 3 · Review Mode</div>
+            <div class="tracked-chapter-title">When God Shows Up in the Dark</div>
+            <p class="tracked-para">There is a kind of darkness that doesn't respond to <span class="tracked-del">natural solutions or human effort</span><span class="tracked-ins">logic, willpower, or the advice of well-meaning people</span>. I know this because I sat in it for three years — not the kind of darkness you can sleep off, but the kind that follows you into morning.</p>
+            <p class="tracked-para">What I didn't know then is that <span class="tracked-del">God was present</span><span class="tracked-ins">God was already in the room</span> — not arriving when I prayed harder, but present in the very silence I had mistaken for His absence.</p>
+          </div>
+          <div class="tracked-sidebar">
+            <div class="tracked-sidebar-label">2 Suggested Changes</div>
+            <div class="change-item del-item">
+              <div class="change-type">Replaced</div>
+              <div class="change-text">"natural solutions or human effort"</div>
+              <div class="change-actions">
+                <span class="ca-btn ca-accept">Accept</span>
+                <span class="ca-btn ca-reject">Reject</span>
+              </div>
+            </div>
+            <div class="change-item ins-item">
+              <div class="change-type">Strengthened</div>
+              <div class="change-text">"God was already in the room"</div>
+              <div class="change-actions">
+                <span class="ca-btn ca-accept">Accept</span>
+                <span class="ca-btn ca-reject">Reject</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1492,9 +2138,10 @@
         <span class="card-badge">Full Access</span>
         <div class="price-row">
           <span class="price-currency">$</span>
-          <span class="price-amount">497</span>
+          <span class="price-amount">695</span>
         </div>
         <p class="price-period">3 months of complete access to the full platform</p>
+        <p style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--ink-dim);margin-top:-28px;margin-bottom:32px">(max 5 books)</p>
         <div class="card-divider"></div>
         <ul class="feature-list">
           <li><span class="check">✓</span><span>Write up to 3 complete books</span></li>
@@ -1507,7 +2154,7 @@
           <li><span class="check">✓</span><span>Publish-Ready formatting (TOC, title page, margins, page numbers)</span></li>
           <li><span class="check">✓</span><span>Archie guide — walkthrough every step of the process</span></li>
         </ul>
-        <a href="/auth/signup" class="btn-gold-full">Claim Your Access — $497</a>
+        <a href="/auth/signup" class="btn-gold-full">Claim Your Access — $695</a>
         <span class="guarantee-note">14-Day Money-Back Guarantee · If the AI doesn't capture your voice, full refund</span>
       </div>
     </div>
@@ -1621,7 +2268,7 @@
       <h2 class="final-hed split-words">Your testimony is ready to be written.</h2>
       <p class="final-body reveal" data-delay="0.1">The ideas have lived in your head long enough. Someone is waiting on the other side of your obedience. Let the scribe do the heavy lifting.</p>
       <div class="reveal" data-delay="0.2" style="display:flex;flex-direction:column;align-items:center;gap:12px">
-        <a href="#pricing" class="btn-gold">Claim Your Access — $497</a>
+        <a href="#pricing" class="btn-gold">Claim Your Access — $695</a>
         <span style="font-family:'Geist Mono',monospace;font-size:10px;color:var(--ink-dim);letter-spacing:0.12em;text-transform:uppercase">14-Day Money-Back Guarantee</span>
       </div>
     </div>
