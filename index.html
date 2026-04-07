@@ -1534,7 +1534,7 @@
     /* ── Mockup A: Story Excavator ── */
     .exc-body {
       display: grid;
-      grid-template-columns: 1fr 260px;
+      grid-template-columns: 1fr 220px;
       height: 300px;
     }
     .exc-main {
@@ -2007,6 +2007,22 @@
       .obj-grid { grid-template-columns: 1fr; }
       .pricing-card { padding: 40px 28px; }
       .price-amount { font-size: 72px; }
+      /* Story Excavator mockup mobile */
+      .exc-body { grid-template-columns: 1fr; height: auto; }
+      .exc-sidebar { display: none; }
+      .exc-main { border-right: none; padding: 18px 20px; }
+      /* Chapter Builder mockup mobile */
+      .outline-body { grid-template-columns: 1fr; height: auto; }
+      .outline-sidebar { display: none; }
+      .outline-main { padding: 18px 20px; height: auto; }
+      /* Tracked changes mobile */
+      .tracked-body { grid-template-columns: 1fr; height: auto; }
+      .tracked-sidebar { display: none; }
+      .tracked-main { border-right: none; padding: 18px 20px; }
+      /* inline mockup text sizing */
+      .exc-question { font-size: 12px; }
+      .sui-chrome-title { font-size: 8px; }
+      .hero-headline { overflow: visible; }
     }
   </style>
 </head>
@@ -2805,9 +2821,9 @@
     <div class="wrap">
       <a href="#" class="footer-logo">Unarchive</a>
       <div class="footer-links">
-        <a href="#">Terms of Service</a>
-        <a href="#">Privacy Policy</a>
-        <a href="mailto:hello@unarchive.ai">Contact Support</a>
+        <a href="tos.html#terms">Terms of Service</a>
+        <a href="tos.html#privacy">Privacy Policy</a>
+        <a href="mailto:support@goshenites.com">Contact Support</a>
       </div>
     </div>
   </footer>
@@ -2842,7 +2858,7 @@
           words.forEach(part => {
             if (/\S/.test(part)) {
               const outer = document.createElement('span');
-              outer.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:top';
+              outer.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:bottom;padding:0.18em 0.08em;margin:-0.18em -0.06em';
               const inner = document.createElement('span');
               inner.className = 'word-inner';
               inner.style.cssText = 'display:inline-block;transform:translateY(105%)';
