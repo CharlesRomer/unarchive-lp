@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <script src="https://js-na2.hsforms.net/forms/embed/243102277.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
@@ -2461,7 +2460,9 @@ ScrollTrigger.create({trigger:'#source-section',start:'top 70%',once:true,onEnte
 
 // ─── MODAL ───
 (function(){
-  // Build modal HTML
+  const HS_PORTAL = '243102277';
+  const HS_FORM   = 'e62cbf96-bde3-4e72-b11f-8c7aac222523';
+
   const modal = document.createElement('div');
   modal.id = 'optin-modal';
   modal.setAttribute('aria-modal','true');
@@ -2471,19 +2472,51 @@ ScrollTrigger.create({trigger:'#source-section',start:'top 70%',once:true,onEnte
     <div class="om-backdrop"></div>
     <div class="om-card">
       <button class="om-close" aria-label="Close">&times;</button>
-      <div class="om-header">
+
+      <div class="om-state om-state-form">
         <div class="om-eyebrow">Founder's Circle</div>
         <h2 class="om-hed">One step away<br>from your book.</h2>
         <p class="om-sub">Enter your details and we'll send your order link and course access straight to your inbox.</p>
+
+        <form id="om-form" novalidate>
+          <div class="om-row-2">
+            <div class="om-field">
+              <label for="om-firstname">First name</label>
+              <input id="om-firstname" name="firstname" type="text" placeholder="Jane" autocomplete="given-name" required />
+              <span class="om-err"></span>
+            </div>
+            <div class="om-field">
+              <label for="om-lastname">Last name</label>
+              <input id="om-lastname" name="lastname" type="text" placeholder="Smith" autocomplete="family-name" />
+              <span class="om-err"></span>
+            </div>
+          </div>
+          <div class="om-field">
+            <label for="om-email">Email <span class="om-req">*</span></label>
+            <input id="om-email" name="email" type="email" placeholder="jane@example.com" autocomplete="email" required />
+            <span class="om-err"></span>
+          </div>
+          <div class="om-field">
+            <label for="om-phone">Phone <span class="om-opt">(optional)</span></label>
+            <input id="om-phone" name="phone" type="tel" placeholder="+1 555 000 0000" autocomplete="tel" />
+          </div>
+          <button type="submit" class="om-submit" id="om-submit-btn">
+            <span class="om-submit-label">Secure My Founder Spot &mdash; $497</span>
+            <span class="om-submit-spinner" aria-hidden="true"></span>
+          </button>
+        </form>
+
+        <p class="om-fine">No spam. Unsubscribe any time. 7-day money-back guarantee.</p>
       </div>
-      <div class="om-form-wrap">
-        <div class="hs-form-frame" data-region="na2" data-form-id="e62cbf96-bde3-4e72-b11f-8c7aac222523" data-portal-id="243102277"></div>
+
+      <div class="om-state om-state-success" style="display:none;">
+        <div class="om-success-icon">&#10003;</div>
+        <h2 class="om-hed">You're in.</h2>
+        <p class="om-sub" style="margin-bottom:0;">Check your inbox &mdash; your order link is on its way. We'll see you on May 6.</p>
       </div>
-      <p class="om-fine">No spam. Unsubscribe any time. 7-day money-back guarantee.</p>
     </div>`;
   document.body.appendChild(modal);
 
-  // CSS
   const style = document.createElement('style');
   style.textContent = `
     #optin-modal {
@@ -2493,34 +2526,32 @@ ScrollTrigger.create({trigger:'#source-section',start:'top 70%',once:true,onEnte
       opacity: 0; pointer-events: none;
       transition: opacity .28s ease;
     }
-    #optin-modal.om-open {
-      opacity: 1; pointer-events: all;
-    }
+    #optin-modal.om-open { opacity: 1; pointer-events: all; }
     .om-backdrop {
       position: absolute; inset: 0;
-      background: rgba(0,0,0,.82);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      background: rgba(0,0,0,.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     .om-card {
       position: relative; z-index: 1;
-      background: #111111;
+      background: #131313;
       border: 1px solid rgba(255,255,255,.1);
       border-radius: 24px;
-      padding: 48px 48px 36px;
-      width: 100%; max-width: 480px;
-      box-shadow: 0 32px 80px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.05), 0 0 80px rgba(70,90,200,.12);
-      transform: translateY(20px);
-      transition: transform .32s cubic-bezier(.22,.68,0,1.2);
+      padding: 44px 44px 36px;
+      width: 100%; max-width: 500px;
+      max-height: calc(100dvh - 32px);
+      overflow-y: auto;
+      box-shadow: 0 40px 100px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.04), 0 0 80px rgba(70,90,200,.1);
+      transform: translateY(24px);
+      transition: transform .36s cubic-bezier(.22,.68,0,1.2);
     }
-    #optin-modal.om-open .om-card {
-      transform: translateY(0);
-    }
+    #optin-modal.om-open .om-card { transform: translateY(0); }
     .om-close {
-      position: absolute; top: 18px; right: 20px;
+      position: absolute; top: 16px; right: 16px;
       background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
-      color: rgba(232,228,220,.6); font-size: 20px; line-height: 1;
-      width: 32px; height: 32px; border-radius: 50%;
+      color: rgba(232,228,220,.5); font-size: 18px; line-height: 1;
+      width: 30px; height: 30px; border-radius: 50%;
       cursor: pointer; display: flex; align-items: center; justify-content: center;
       transition: background .15s, color .15s;
     }
@@ -2528,135 +2559,193 @@ ScrollTrigger.create({trigger:'#source-section',start:'top 70%',once:true,onEnte
     .om-eyebrow {
       font-family: 'Geist Mono', monospace; font-size: 10px;
       letter-spacing: .2em; text-transform: uppercase;
-      color: rgba(168,160,154,.7); margin-bottom: 14px;
+      color: rgba(168,160,154,.6); margin-bottom: 12px;
     }
     .om-hed {
       font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
-      font-size: clamp(28px, 5vw, 38px); line-height: 1.1;
-      color: #fff; margin-bottom: 12px;
+      font-size: clamp(26px, 5vw, 36px); line-height: 1.1;
+      color: #fff; margin-bottom: 10px;
     }
     .om-sub {
-      font-size: 14px; color: rgba(232,228,220,.6);
-      line-height: 1.7; margin-bottom: 32px;
+      font-size: 14px; color: rgba(232,228,220,.55);
+      line-height: 1.7; margin-bottom: 28px;
     }
-    .om-form-wrap { margin-bottom: 16px; }
+    .om-row-2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .om-field {
+      display: flex; flex-direction: column; margin-bottom: 14px;
+    }
+    .om-field label {
+      font-family: 'Geist', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: rgba(232,228,220,.45);
+      margin-bottom: 7px;
+    }
+    .om-req { color: rgba(255,100,100,.7); }
+    .om-opt { font-weight: 400; letter-spacing: 0; text-transform: none; color: rgba(232,228,220,.28); }
+    .om-field input {
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px;
+      color: #fff;
+      font-family: 'Geist', sans-serif;
+      font-size: 15px;
+      padding: 13px 15px;
+      outline: none;
+      transition: border-color .15s, box-shadow .15s, background .15s;
+      -webkit-appearance: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .om-field input:focus {
+      border-color: rgba(255,255,255,.28);
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 0 0 3px rgba(80,100,220,.15);
+    }
+    .om-field input::placeholder { color: rgba(232,228,220,.2); }
+    .om-field input.om-invalid {
+      border-color: rgba(255,90,90,.5);
+      box-shadow: 0 0 0 3px rgba(255,90,90,.08);
+    }
+    .om-err {
+      font-size: 11px; color: rgba(255,100,100,.75);
+      margin-top: 4px; min-height: 16px; line-height: 1.4;
+    }
+    .om-submit {
+      width: 100%; margin-top: 6px;
+      background: #ffffff;
+      color: #0A0A0A;
+      font-family: 'Geist', sans-serif;
+      font-size: 16px; font-weight: 700;
+      border: none; border-radius: 100px;
+      padding: 17px 32px;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s, opacity .15s;
+      box-shadow: 0 4px 28px rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      white-space: nowrap;
+    }
+    .om-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(255,255,255,.28); }
+    .om-submit:active { transform: translateY(0); }
+    .om-submit.om-loading { opacity: .7; pointer-events: none; }
+    .om-submit-spinner {
+      display: none;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(10,10,10,.2);
+      border-top-color: #0A0A0A;
+      border-radius: 50%;
+      animation: om-spin .7s linear infinite;
+      flex-shrink: 0;
+    }
+    .om-submit.om-loading .om-submit-spinner { display: block; }
+    @keyframes om-spin { to { transform: rotate(360deg); } }
     .om-fine {
       font-family: 'Geist Mono', monospace; font-size: 10px;
-      letter-spacing: .06em; color: rgba(232,228,220,.28);
-      text-align: center; line-height: 1.6;
+      letter-spacing: .06em; color: rgba(232,228,220,.25);
+      text-align: center; line-height: 1.6; margin-top: 16px;
     }
-
-    /* ── HubSpot form overrides ── */
-    #optin-modal .hs-form-frame,
-    #optin-modal .hs-form {
-      width: 100% !important;
-    }
-    #optin-modal .hs-form fieldset {
-      max-width: 100% !important;
-    }
-    #optin-modal .hs-form .hs-form-field {
-      margin-bottom: 14px;
-    }
-    #optin-modal .hs-form label {
-      font-family: 'Geist', sans-serif !important;
-      font-size: 12px !important; font-weight: 500 !important;
-      color: rgba(232,228,220,.55) !important;
-      letter-spacing: .04em !important; text-transform: uppercase !important;
-      margin-bottom: 6px !important; display: block !important;
-    }
-    #optin-modal .hs-form input[type="text"],
-    #optin-modal .hs-form input[type="email"],
-    #optin-modal .hs-form input[type="tel"],
-    #optin-modal .hs-form select,
-    #optin-modal .hs-form textarea {
-      width: 100% !important;
-      background: rgba(255,255,255,.05) !important;
-      border: 1px solid rgba(255,255,255,.12) !important;
-      border-radius: 10px !important;
-      color: #fff !important;
-      font-family: 'Geist', sans-serif !important;
-      font-size: 15px !important;
-      padding: 13px 16px !important;
-      outline: none !important;
-      transition: border-color .15s, box-shadow .15s !important;
-      -webkit-appearance: none !important;
-    }
-    #optin-modal .hs-form input:focus,
-    #optin-modal .hs-form select:focus,
-    #optin-modal .hs-form textarea:focus {
-      border-color: rgba(255,255,255,.3) !important;
-      box-shadow: 0 0 0 3px rgba(80,100,220,.18) !important;
-    }
-    #optin-modal .hs-form input::placeholder,
-    #optin-modal .hs-form textarea::placeholder {
-      color: rgba(232,228,220,.25) !important;
-    }
-    #optin-modal .hs-form .hs-button,
-    #optin-modal .hs-form input[type="submit"] {
-      width: 100% !important;
-      background: #ffffff !important;
-      color: #0A0A0A !important;
-      font-family: 'Geist', sans-serif !important;
-      font-size: 16px !important; font-weight: 600 !important;
-      border: none !important; border-radius: 100px !important;
-      padding: 16px 32px !important;
-      cursor: pointer !important; margin-top: 8px !important;
-      transition: transform .15s, box-shadow .15s !important;
-      box-shadow: 0 4px 24px rgba(255,255,255,.18) !important;
-      white-space: nowrap !important;
-    }
-    #optin-modal .hs-form .hs-button:hover,
-    #optin-modal .hs-form input[type="submit"]:hover {
-      transform: translateY(-2px) !important;
-      box-shadow: 0 8px 40px rgba(255,255,255,.25) !important;
-    }
-    #optin-modal .hs-form .hs-error-msgs {
-      list-style: none !important; margin-top: 4px !important;
-    }
-    #optin-modal .hs-form .hs-error-msgs li label {
-      font-size: 11px !important; color: rgba(255,120,120,.8) !important;
-      text-transform: none !important; letter-spacing: 0 !important; font-weight: 400 !important;
-    }
-    #optin-modal .hs-form .submitted-message {
-      font-family: 'Fraunces', serif !important; font-style: italic !important;
-      font-size: 22px !important; color: #fff !important;
-      text-align: center !important; padding: 20px 0 !important;
-    }
-    #optin-modal .hs-richtext,
-    #optin-modal .hs-form .legal-consent-container {
-      font-size: 11px !important; color: rgba(232,228,220,.35) !important;
-      line-height: 1.6 !important;
+    .om-success-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; color: #fff;
+      margin-bottom: 24px;
     }
     @media(max-width: 540px){
-      .om-card { padding: 36px 24px 28px; border-radius: 20px; }
+      .om-card { padding: 36px 22px 28px; border-radius: 20px; }
       .om-hed { font-size: 26px; }
+      .om-row-2 { grid-template-columns: 1fr; gap: 0; }
     }
   `;
   document.head.appendChild(style);
 
-  // Open / close logic
   function openModal(e){
     e.preventDefault();
     modal.classList.add('om-open');
     document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      const first = modal.querySelector('input');
+      if(first) first.focus();
+    }, 350);
   }
   function closeModal(){
     modal.classList.remove('om-open');
     document.body.style.overflow = '';
   }
 
-  // Intercept all CTA buttons
-  document.querySelectorAll('.btn-primary').forEach(btn => {
-    btn.addEventListener('click', openModal);
-  });
-
-  // Close on backdrop or X
+  document.querySelectorAll('.btn-primary').forEach(btn => btn.addEventListener('click', openModal));
   modal.querySelector('.om-backdrop').addEventListener('click', closeModal);
   modal.querySelector('.om-close').addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
 
-  // Close on Escape
-  document.addEventListener('keydown', e => {
-    if(e.key === 'Escape') closeModal();
+  // Form submission -> HubSpot API
+  const form = modal.querySelector('#om-form');
+  const submitBtn = modal.querySelector('#om-submit-btn');
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    let valid = true;
+
+    const firstname = form.querySelector('[name="firstname"]');
+    const email     = form.querySelector('[name="email"]');
+
+    // Validate
+    [firstname, email].forEach(el => {
+      el.classList.remove('om-invalid');
+      el.nextElementSibling.textContent = '';
+    });
+
+    if(!firstname.value.trim()){
+      firstname.classList.add('om-invalid');
+      firstname.nextElementSibling.textContent = 'First name is required.';
+      valid = false;
+    }
+    if(!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){
+      email.classList.add('om-invalid');
+      email.nextElementSibling.textContent = 'Please enter a valid email.';
+      valid = false;
+    }
+    if(!valid) return;
+
+    submitBtn.classList.add('om-loading');
+    submitBtn.querySelector('.om-submit-label').textContent = 'Submitting...';
+
+    const fields = [
+      { name: 'firstname', value: firstname.value.trim() },
+      { name: 'email',     value: email.value.trim() },
+    ];
+    const lastname = form.querySelector('[name="lastname"]');
+    if(lastname.value.trim()) fields.push({ name: 'lastname', value: lastname.value.trim() });
+    const phone = form.querySelector('[name="phone"]');
+    if(phone.value.trim()) fields.push({ name: 'phone', value: phone.value.trim() });
+
+    try {
+      const res = await fetch(
+        `https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL}/${HS_FORM}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fields,
+            context: { pageUri: window.location.href, pageName: document.title }
+          })
+        }
+      );
+
+      if(res.ok){
+        modal.querySelector('.om-state-form').style.display = 'none';
+        modal.querySelector('.om-state-success').style.display = 'block';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch(err){
+      submitBtn.classList.remove('om-loading');
+      submitBtn.querySelector('.om-submit-label').textContent = 'Secure My Founder Spot \u2014 $497';
+      email.classList.add('om-invalid');
+      email.nextElementSibling.textContent = 'Something went wrong. Please try again.';
+    }
   });
 })();
 
