@@ -14,7 +14,7 @@
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     :root {
       --bg:       #0A0A0A;
@@ -2508,12 +2508,6 @@ ScrollTrigger.create({trigger:'#source-section',start:'top 70%',once:true,onEnte
 
         <p class="om-fine">No spam. Unsubscribe any time. 7-day money-back guarantee.</p>
       </div>
-
-      <div class="om-state om-state-success" style="display:none;">
-        <div class="om-success-icon">&#10003;</div>
-        <h2 class="om-hed">You're in.</h2>
-        <p class="om-sub" style="margin-bottom:0;">Check your inbox &mdash; your order link is on its way. We'll see you on May 6.</p>
-      </div>
     </div>`;
   document.body.appendChild(modal);
 
@@ -2538,10 +2532,11 @@ ScrollTrigger.create({trigger:'#source-section',start:'top 70%',once:true,onEnte
       background: #131313;
       border: 1px solid rgba(255,255,255,.1);
       border-radius: 24px;
-      padding: 44px 44px 36px;
+      padding: 44px 44px 32px;
       width: 100%; max-width: 500px;
-      max-height: calc(100dvh - 32px);
+      max-height: 90dvh;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       box-shadow: 0 40px 100px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.04), 0 0 80px rgba(70,90,200,.1);
       transform: translateY(24px);
       transition: transform .36s cubic-bezier(.22,.68,0,1.2);
@@ -2568,13 +2563,13 @@ ScrollTrigger.create({trigger:'#source-section',start:'top 70%',once:true,onEnte
     }
     .om-sub {
       font-size: 14px; color: rgba(232,228,220,.55);
-      line-height: 1.7; margin-bottom: 28px;
+      line-height: 1.7; margin-bottom: 20px;
     }
     .om-row-2 {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
     }
     .om-field {
-      display: flex; flex-direction: column; margin-bottom: 14px;
+      display: flex; flex-direction: column; margin-bottom: 10px;
     }
     .om-field label {
       font-family: 'Geist', sans-serif;
@@ -2654,8 +2649,13 @@ ScrollTrigger.create({trigger:'#source-section',start:'top 70%',once:true,onEnte
       margin-bottom: 24px;
     }
     @media(max-width: 540px){
-      .om-card { padding: 36px 22px 28px; border-radius: 20px; }
-      .om-hed { font-size: 26px; }
+      #optin-modal { align-items: flex-end; padding: 0; }
+      .om-card {
+        padding: 32px 20px 24px; border-radius: 20px 20px 0 0;
+        max-height: 92dvh; width: 100%; max-width: 100%;
+        border-left: none; border-right: none; border-bottom: none;
+      }
+      .om-hed { font-size: 24px; }
       .om-row-2 { grid-template-columns: 1fr; gap: 0; }
     }
   `;
@@ -2735,8 +2735,7 @@ ScrollTrigger.create({trigger:'#source-section',start:'top 70%',once:true,onEnte
       );
 
       if(res.ok){
-        modal.querySelector('.om-state-form').style.display = 'none';
-        modal.querySelector('.om-state-success').style.display = 'block';
+        window.location.href = 'https://app.unarchive.ai/preorder';
       } else {
         throw new Error('Server error');
       }
