@@ -257,13 +257,13 @@
     /* SPOTS COUNTER */
     .spots-wrap {
       display: flex; flex-direction: column; align-items: center;
-      gap: 8px;
+      gap: 14px;
+      margin-bottom: 40px;
     }
     .spots-num {
       font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
       font-size: clamp(72px, 14vw, 120px);
       line-height: 1;
-      color: #fff;
       background: linear-gradient(135deg, #fff 20%, rgba(168,160,154,.7) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -273,6 +273,18 @@
       letter-spacing: .2em; text-transform: uppercase;
       color: rgba(232,228,220,.4);
     }
+    /* Smaller, subdued version for final CTA section */
+    .spots-wrap.spots-sm .spots-num {
+      font-size: clamp(32px, 6vw, 48px);
+      background: linear-gradient(135deg, rgba(168,160,154,.6) 0%, rgba(168,160,154,.35) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .spots-wrap.spots-sm .spots-label {
+      font-size: 10px;
+      color: rgba(232,228,220,.25);
+    }
+    .spots-wrap.spots-sm { gap: 8px; margin-bottom: 28px; }
     /* CTA */
     .btn {
       display: inline-flex; align-items: center; gap: 10px;
@@ -2319,11 +2331,11 @@
       </div>
     </div>
 
-    <div class="spots-wrap" id="final-spots" style="margin-top:48px">
+    <div class="spots-wrap spots-sm" id="final-spots" style="margin-top:48px">
       <div class="spots-num" id="final-spots-num">500</div>
       <div class="spots-label">founder spots remaining</div>
     </div>
-    <a href="#" class="btn btn-primary lg" style="position:relative;z-index:1;margin-top:32px">Secure My Founder Spot · $497</a>
+    <a href="#" class="btn btn-primary lg" style="position:relative;z-index:1;">Secure My Founder Spot · $497</a>
     <div class="final-guarantee">7-day money-back guarantee &nbsp;·&nbsp; Own your work forever</div>
   </div>
 </section>
