@@ -253,6 +253,26 @@
     }
     .cd-label { font-family:'Geist Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color: var(--dim); }
     .cd-sep { font-family:'Geist Mono',monospace; font-size: clamp(20px,3.5vw,42px); color: var(--orange); opacity:.35; margin-bottom:16px; font-weight:500; }
+
+    /* SPOTS COUNTER */
+    .spots-wrap {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 8px;
+    }
+    .spots-num {
+      font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+      font-size: clamp(72px, 14vw, 120px);
+      line-height: 1;
+      color: #fff;
+      background: linear-gradient(135deg, #fff 20%, rgba(168,160,154,.7) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .spots-label {
+      font-family: 'Geist Mono', monospace; font-size: 12px;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(232,228,220,.4);
+    }
     /* CTA */
     .btn {
       display: inline-flex; align-items: center; gap: 10px;
@@ -1587,8 +1607,8 @@
 <!-- ─── URGENCY BAR ─── -->
 <div id="bar">
   <div class="bar-dot"></div>
-  <span class="bar-text">Pre-order closes May 6 —</span>
-  <span class="bar-timer" id="bar-timer">loading...</span>
+  <span class="bar-text">Founder spots remaining —</span>
+  <span class="bar-timer" id="bar-timer">276</span>
   <div class="bar-dot"></div>
 </div>
 
@@ -1605,14 +1625,9 @@
     </h1>
     <p class="hero-p">Get Tomi Arayomi's complete 24hr bestselling author training, plus the full AI software that takes you from blank page to a complete, publish-ready book in days. Your voice. Your stories. Your frameworks. AI doing all the heavy lifting.</p>
 
-    <div class="cd-wrap" id="hero-cd">
-      <div class="cd-unit"><div class="cd-num" id="h-d">00</div><div class="cd-label">Days</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><div class="cd-num" id="h-h">00</div><div class="cd-label">Hours</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><div class="cd-num" id="h-m">00</div><div class="cd-label">Mins</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><div class="cd-num" id="h-s">00</div><div class="cd-label">Secs</div></div>
+    <div class="spots-wrap" id="hero-spots">
+      <div class="spots-num" id="hero-spots-num">500</div>
+      <div class="spots-label">founder spots remaining</div>
     </div>
     <div class="hero-cta">
       <a href="#" class="btn btn-primary lg">Secure My Founder Spot · $497</a>
@@ -2304,14 +2319,9 @@
       </div>
     </div>
 
-    <div class="cd-wrap" id="final-cd" style="margin-top:48px">
-      <div class="cd-unit"><div class="cd-num" id="f-d">00</div><div class="cd-label">Days</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><div class="cd-num" id="f-h">00</div><div class="cd-label">Hours</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><div class="cd-num" id="f-m">00</div><div class="cd-label">Mins</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><div class="cd-num" id="f-s">00</div><div class="cd-label">Secs</div></div>
+    <div class="spots-wrap" id="final-spots" style="margin-top:48px">
+      <div class="spots-num" id="final-spots-num">500</div>
+      <div class="spots-label">founder spots remaining</div>
     </div>
     <a href="#" class="btn btn-primary lg" style="position:relative;z-index:1;margin-top:32px">Secure My Founder Spot · $497</a>
     <div class="final-guarantee">7-day money-back guarantee &nbsp;·&nbsp; Own your work forever</div>
@@ -2348,21 +2358,32 @@
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-// ─── COUNTDOWN ───
-const DEADLINE = new Date('2026-05-06T00:00:00');
-function pad(n){return String(n).padStart(2,'0')}
-function tick(){
-  const diff = DEADLINE - new Date();
-  if(diff<=0){['h-d','h-h','h-m','h-s','f-d','f-h','f-m','f-s'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent='00'});document.getElementById('bar-timer').textContent='LAUNCHING NOW';return;}
-  const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
-  const ds=pad(d),hs=pad(h),ms=pad(m),ss=pad(s);
-  ['h-d','f-d'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=ds});
-  ['h-h','f-h'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=hs});
-  ['h-m','f-m'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=ms});
-  ['h-s','f-s'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=ss});
-  document.getElementById('bar-timer').textContent=`${ds}d ${hs}h ${ms}m ${ss}s`;
-}
-tick(); setInterval(tick,1000);
+// ─── SPOTS COUNTER ───
+(function(){
+  const TARGET = 276, START = 500;
+  const DURATION = 1800; // ms
+  const heroEl  = document.getElementById('hero-spots-num');
+  const finalEl = document.getElementById('final-spots-num');
+
+  function setAll(v){ if(heroEl) heroEl.textContent=v; if(finalEl) finalEl.textContent=v; }
+
+  function animateSpots(){
+    const t0 = performance.now();
+    function frame(now){
+      const p = Math.min((now - t0) / DURATION, 1);
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = Math.round(START - (START - TARGET) * eased);
+      setAll(val);
+      if(p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // start animation shortly after page load
+  window.addEventListener('load', () => setTimeout(animateSpots, 400));
+})();
+
 
 // ─── HERO STREAMING ───
 const heroWords = "There is a kind of darkness that doesn't respond to logic, willpower, or the advice of well-meaning people. I know this because I sat in it for three years, not the kind you can sleep off, but the kind that follows you into morning. What I didn't know then is that God was already in the room, present in the very silence I had mistaken for His absence.".split(' ');
