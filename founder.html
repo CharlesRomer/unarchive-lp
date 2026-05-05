@@ -254,37 +254,37 @@
     .cd-label { font-family:'Geist Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color: var(--dim); }
     .cd-sep { font-family:'Geist Mono',monospace; font-size: clamp(20px,3.5vw,42px); color: var(--orange); opacity:.35; margin-bottom:16px; font-weight:500; }
 
-    /* SPOTS COUNTER */
+    /* COUNTDOWN TIMER */
     .spots-wrap {
       display: flex; flex-direction: column; align-items: center;
       gap: 14px;
       margin-bottom: 40px;
     }
     .spots-num {
-      font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
-      font-size: clamp(72px, 14vw, 120px);
+      font-family: 'Geist Mono', monospace; font-weight: 500;
+      font-size: clamp(52px, 10vw, 88px);
       line-height: 1;
-      background: linear-gradient(135deg, #fff 20%, rgba(168,160,154,.7) 100%);
+      letter-spacing: -.01em;
+      background: linear-gradient(135deg, #fff 30%, rgba(168,160,154,.65) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     .spots-label {
-      font-family: 'Geist Mono', monospace; font-size: 12px;
-      letter-spacing: .2em; text-transform: uppercase;
-      color: rgba(232,228,220,.4);
+      font-family: 'Geist Mono', monospace; font-size: 11px;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(232,228,220,.38);
     }
     /* Smaller, subdued version for final CTA section */
+    .spots-wrap.spots-sm { gap: 8px; margin-bottom: 28px; }
     .spots-wrap.spots-sm .spots-num {
-      font-size: clamp(32px, 6vw, 48px);
-      background: linear-gradient(135deg, rgba(168,160,154,.6) 0%, rgba(168,160,154,.35) 100%);
+      font-size: clamp(26px, 5vw, 40px);
+      background: linear-gradient(135deg, rgba(168,160,154,.55) 0%, rgba(168,160,154,.3) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     .spots-wrap.spots-sm .spots-label {
-      font-size: 10px;
-      color: rgba(232,228,220,.25);
+      font-size: 9px; color: rgba(232,228,220,.22);
     }
-    .spots-wrap.spots-sm { gap: 8px; margin-bottom: 28px; }
     /* CTA */
     .btn {
       display: inline-flex; align-items: center; gap: 10px;
@@ -1619,8 +1619,8 @@
 <!-- ─── URGENCY BAR ─── -->
 <div id="bar">
   <div class="bar-dot"></div>
-  <span class="bar-text">Founder spots remaining —</span>
-  <span class="bar-timer" id="bar-timer">163</span>
+  <span class="bar-text">Offer expires at midnight —</span>
+  <span class="bar-timer" id="bar-timer">--:--:--</span>
   <div class="bar-dot"></div>
 </div>
 
@@ -1638,8 +1638,8 @@
     <p class="hero-p">Get Tomi Arayomi's complete 24hr bestselling author training, plus the full AI software that takes you from blank page to a complete, publish-ready book in days. Your voice. Your stories. Your frameworks. AI doing all the heavy lifting.</p>
 
     <div class="spots-wrap" id="hero-spots">
-      <div class="spots-num" id="hero-spots-num">500</div>
-      <div class="spots-label">founder spots remaining</div>
+      <div class="spots-num" id="hero-spots-num">--:--:--</div>
+      <div class="spots-label">hrs &nbsp;·&nbsp; min &nbsp;·&nbsp; sec &nbsp;·&nbsp; until midnight</div>
     </div>
     <div class="hero-cta">
       <a href="#" class="btn btn-primary lg">Secure My Founder Spot · $497</a>
@@ -2332,8 +2332,8 @@
     </div>
 
     <div class="spots-wrap spots-sm" id="final-spots" style="margin-top:48px">
-      <div class="spots-num" id="final-spots-num">500</div>
-      <div class="spots-label">founder spots remaining</div>
+      <div class="spots-num" id="final-spots-num">--:--:--</div>
+      <div class="spots-label">hrs · min · sec · until midnight</div>
     </div>
     <a href="#" class="btn btn-primary lg" style="position:relative;z-index:1;">Secure My Founder Spot · $497</a>
     <div class="final-guarantee">7-day money-back guarantee &nbsp;·&nbsp; Own your work forever</div>
@@ -2370,30 +2370,33 @@
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-// ─── SPOTS COUNTER ───
+// ─── COUNTDOWN TO MIDNIGHT PACIFIC ───
 (function(){
-  const TARGET = 163, START = 500;
-  const DURATION = 1800; // ms
+  // Midnight May 6 PDT = May 6 07:00:00 UTC
+  const DEADLINE = new Date('2026-05-06T07:00:00Z');
   const heroEl  = document.getElementById('hero-spots-num');
   const finalEl = document.getElementById('final-spots-num');
-
-  function setAll(v){ if(heroEl) heroEl.textContent=v; if(finalEl) finalEl.textContent=v; }
-
-  function animateSpots(){
-    const t0 = performance.now();
-    function frame(now){
-      const p = Math.min((now - t0) / DURATION, 1);
-      // ease-out cubic
-      const eased = 1 - Math.pow(1 - p, 3);
-      const val = Math.round(START - (START - TARGET) * eased);
-      setAll(val);
-      if(p < 1) requestAnimationFrame(frame);
+  const barEl   = document.getElementById('bar-timer');
+  function p2(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    const diff = DEADLINE - Date.now();
+    if(diff <= 0){
+      const s = '00:00:00';
+      if(heroEl)  heroEl.textContent  = s;
+      if(finalEl) finalEl.textContent = s;
+      if(barEl)   barEl.textContent   = 'MIDNIGHT';
+      return;
     }
-    requestAnimationFrame(frame);
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    const str = p2(h) + ':' + p2(m) + ':' + p2(s);
+    if(heroEl)  heroEl.textContent  = str;
+    if(finalEl) finalEl.textContent = str;
+    if(barEl)   barEl.textContent   = str;
   }
-
-  // start animation shortly after page load
-  window.addEventListener('load', () => setTimeout(animateSpots, 400));
+  tick();
+  setInterval(tick, 1000);
 })();
 
 
