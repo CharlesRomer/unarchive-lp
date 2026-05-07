@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/243102277.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
@@ -1670,7 +1669,7 @@
       <div class="spots-label">spots remaining at this price</div>
     </div>
     <div class="hero-cta">
-      <a href="#" class="btn btn-primary lg">Get Instant Access · $695</a>
+      <a href="https://app.unarchive.ai/signup" class="btn btn-primary lg">Get Instant Access · $695</a>
       <span class="btn-fine">Full platform access today &nbsp;·&nbsp; Tomi's $997 course included &nbsp;·&nbsp; 7-day money-back guarantee</span>
     </div>
   </div>
@@ -1832,7 +1831,7 @@
         <div class="opr-save">$997 course included free</div>
       </div>
       <div class="opr-right">
-        <a href="#" class="btn btn-primary lg">Get Instant Access</a>
+        <a href="https://app.unarchive.ai/signup" class="btn btn-primary lg">Get Instant Access</a>
         <div class="opr-note">Tomi's course starts today.<br>Platform access is immediate.</div>
       </div>
     </div>
@@ -2264,7 +2263,7 @@
       <span class="eyebrow" style="text-align:center">Founders Only</span>
       <h2 class="excl-hed"><span class="grad">You're not just buying software.</span><br>You're joining the first class.</h2>
       <p class="excl-p">This is the founding cohort. The ones who saw it live and moved first.</p>
-      <a href="#" class="btn btn-primary lg">Get Instant Access · $695</a>
+      <a href="https://app.unarchive.ai/signup" class="btn btn-primary lg">Get Instant Access · $695</a>
       <div style="margin-top:14px;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)">7-day money-back guarantee</div>
       <div class="excl-cards">
         <div class="excl-card">
@@ -2363,7 +2362,7 @@
       <div class="spots-num" id="final-spots-num">100</div>
       <div class="spots-label">spots remaining at this price</div>
     </div>
-    <a href="#" class="btn btn-primary lg" style="position:relative;z-index:1;">Get Instant Access · $695</a>
+    <a href="https://app.unarchive.ai/signup" class="btn btn-primary lg" style="position:relative;z-index:1;">Get Instant Access · $695</a>
     <div class="final-guarantee">7-day money-back guarantee &nbsp;·&nbsp; Own your work forever</div>
   </div>
 </section>
@@ -2497,307 +2496,6 @@ function srcType(){
   setTimeout(srcType,25+Math.random()*15);
 }
 ScrollTrigger.create({trigger:'#source-section',start:'top 70%',once:true,onEnter:()=>srcType()});
-
-// ─── MODAL ───
-(function(){
-  const HS_PORTAL = '243102277';
-  const HS_FORM   = 'e62cbf96-bde3-4e72-b11f-8c7aac222523';
-
-  const modal = document.createElement('div');
-  modal.id = 'optin-modal';
-  modal.setAttribute('aria-modal','true');
-  modal.setAttribute('role','dialog');
-  modal.setAttribute('aria-label','Get access');
-  modal.innerHTML = `
-    <div class="om-backdrop"></div>
-    <div class="om-card">
-      <button class="om-close" aria-label="Close">&times;</button>
-
-      <div class="om-state om-state-form">
-        <div class="om-eyebrow">Founder's Circle</div>
-        <h2 class="om-hed">One step away<br>from your book.</h2>
-        <p class="om-sub">Enter your details and we'll send your order link and course access straight to your inbox.</p>
-
-        <form id="om-form" novalidate>
-          <div class="om-row-2">
-            <div class="om-field">
-              <label for="om-firstname">First name</label>
-              <input id="om-firstname" name="firstname" type="text" placeholder="Jane" autocomplete="given-name" required />
-              <span class="om-err"></span>
-            </div>
-            <div class="om-field">
-              <label for="om-lastname">Last name</label>
-              <input id="om-lastname" name="lastname" type="text" placeholder="Smith" autocomplete="family-name" />
-              <span class="om-err"></span>
-            </div>
-          </div>
-          <div class="om-field">
-            <label for="om-email">Email <span class="om-req">*</span></label>
-            <input id="om-email" name="email" type="email" placeholder="jane@example.com" autocomplete="email" required />
-            <span class="om-err"></span>
-          </div>
-          <div class="om-field">
-            <label for="om-phone">Phone <span class="om-opt">(optional)</span></label>
-            <input id="om-phone" name="phone" type="tel" placeholder="+1 555 000 0000" autocomplete="tel" />
-          </div>
-          <button type="submit" class="om-submit" id="om-submit-btn">
-            <span class="om-submit-label">Get Instant Access &mdash; $695</span>
-            <span class="om-submit-spinner" aria-hidden="true"></span>
-          </button>
-        </form>
-
-        <p class="om-fine">No spam. Unsubscribe any time. 7-day money-back guarantee.</p>
-      </div>
-    </div>`;
-  document.body.appendChild(modal);
-
-  const style = document.createElement('style');
-  style.textContent = `
-    #optin-modal {
-      position: fixed; inset: 0; z-index: 9999;
-      display: flex; align-items: center; justify-content: center;
-      padding: 16px;
-      opacity: 0; pointer-events: none;
-      transition: opacity .28s ease;
-    }
-    #optin-modal.om-open { opacity: 1; pointer-events: all; }
-    .om-backdrop {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-    .om-card {
-      position: relative; z-index: 1;
-      background: #131313;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 24px;
-      padding: 44px 44px 32px;
-      width: 100%; max-width: 500px;
-      max-height: 90dvh;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      box-shadow: 0 40px 100px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.04), 0 0 80px rgba(70,90,200,.1);
-      transform: translateY(24px);
-      transition: transform .36s cubic-bezier(.22,.68,0,1.2);
-    }
-    #optin-modal.om-open .om-card { transform: translateY(0); }
-    .om-close {
-      position: absolute; top: 16px; right: 16px;
-      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
-      color: rgba(232,228,220,.5); font-size: 18px; line-height: 1;
-      width: 30px; height: 30px; border-radius: 50%;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: background .15s, color .15s;
-    }
-    .om-close:hover { background: rgba(255,255,255,.12); color: #fff; }
-    .om-eyebrow {
-      font-family: 'Geist Mono', monospace; font-size: 10px;
-      letter-spacing: .2em; text-transform: uppercase;
-      color: rgba(168,160,154,.6); margin-bottom: 12px;
-    }
-    .om-hed {
-      font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
-      font-size: clamp(26px, 5vw, 36px); line-height: 1.1;
-      color: #fff; margin-bottom: 10px;
-    }
-    .om-sub {
-      font-size: 14px; color: rgba(232,228,220,.55);
-      line-height: 1.7; margin-bottom: 20px;
-    }
-    .om-row-2 {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-    }
-    .om-field {
-      display: flex; flex-direction: column; margin-bottom: 6px;
-    }
-    .om-field label {
-      font-family: 'Geist', sans-serif;
-      font-size: 11px; font-weight: 600;
-      letter-spacing: .08em; text-transform: uppercase;
-      color: rgba(232,228,220,.45);
-      margin-bottom: 5px;
-    }
-    .om-req { color: rgba(255,100,100,.7); }
-    .om-opt { font-weight: 400; letter-spacing: 0; text-transform: none; color: rgba(232,228,220,.28); }
-    .om-field input {
-      background: rgba(255,255,255,.055);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 12px;
-      color: #fff;
-      font-family: 'Geist', sans-serif;
-      font-size: 15px;
-      padding: 13px 15px;
-      outline: none;
-      transition: border-color .15s, box-shadow .15s, background .15s;
-      -webkit-appearance: none;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .om-field input:focus {
-      border-color: rgba(255,255,255,.28);
-      background: rgba(255,255,255,.08);
-      box-shadow: 0 0 0 3px rgba(80,100,220,.15);
-    }
-    .om-field input::placeholder { color: rgba(232,228,220,.2); }
-    .om-field input.om-invalid {
-      border-color: rgba(255,90,90,.5);
-      box-shadow: 0 0 0 3px rgba(255,90,90,.08);
-    }
-    .om-err {
-      font-size: 11px; color: rgba(255,100,100,.75);
-      margin-top: 3px; min-height: 14px; line-height: 1.4;
-    }
-    .om-submit {
-      width: 100%; margin-top: 18px;
-      background: #ffffff;
-      color: #0A0A0A;
-      font-family: 'Geist', sans-serif;
-      font-size: 16px; font-weight: 700;
-      border: none; border-radius: 100px;
-      padding: 17px 32px;
-      cursor: pointer;
-      transition: transform .15s, box-shadow .15s, opacity .15s;
-      box-shadow: 0 4px 28px rgba(255,255,255,.2);
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      white-space: nowrap;
-    }
-    .om-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(255,255,255,.28); }
-    .om-submit:active { transform: translateY(0); }
-    .om-submit.om-loading { opacity: .7; pointer-events: none; }
-    .om-submit-spinner {
-      display: none;
-      width: 16px; height: 16px;
-      border: 2px solid rgba(10,10,10,.2);
-      border-top-color: #0A0A0A;
-      border-radius: 50%;
-      animation: om-spin .7s linear infinite;
-      flex-shrink: 0;
-    }
-    .om-submit.om-loading .om-submit-spinner { display: block; }
-    @keyframes om-spin { to { transform: rotate(360deg); } }
-    .om-fine {
-      font-family: 'Geist Mono', monospace; font-size: 10px;
-      letter-spacing: .06em; color: rgba(232,228,220,.25);
-      text-align: center; line-height: 1.6; margin-top: 16px;
-    }
-    .om-success-icon {
-      width: 56px; height: 56px; border-radius: 50%;
-      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 24px; color: #fff;
-      margin-bottom: 24px;
-    }
-    @media(max-width: 540px){
-      #optin-modal {
-        align-items: flex-end;
-        padding: 0;
-      }
-      .om-backdrop { border-radius: 0; }
-      .om-card {
-        padding: 28px 20px 32px;
-        border-radius: 20px 20px 0 0;
-        max-height: 88dvh;
-        width: 100%; max-width: 100%;
-        border-left: none; border-right: none; border-bottom: none;
-        box-shadow: 0 -12px 60px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.07);
-      }
-      .om-hed { font-size: 22px; margin-bottom: 8px; }
-      .om-sub { font-size: 13px; margin-bottom: 16px; }
-      .om-row-2 { grid-template-columns: 1fr; gap: 0; }
-      .om-close { top: 14px; right: 14px; }
-      .om-field input { font-size: 16px; } /* prevents iOS auto-zoom */
-    }
-  `;
-  document.head.appendChild(style);
-
-  function openModal(e){
-    e.preventDefault();
-    modal.classList.add('om-open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => {
-      const first = modal.querySelector('input');
-      if(first) first.focus();
-    }, 350);
-  }
-  function closeModal(){
-    modal.classList.remove('om-open');
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('.btn-primary').forEach(btn => btn.addEventListener('click', openModal));
-  modal.querySelector('.om-backdrop').addEventListener('click', closeModal);
-  modal.querySelector('.om-close').addEventListener('click', closeModal);
-  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
-
-  // Form submission -> HubSpot API
-  const form = modal.querySelector('#om-form');
-  const submitBtn = modal.querySelector('#om-submit-btn');
-
-  form.addEventListener('submit', async function(e){
-    e.preventDefault();
-    let valid = true;
-
-    const firstname = form.querySelector('[name="firstname"]');
-    const email     = form.querySelector('[name="email"]');
-
-    // Validate
-    [firstname, email].forEach(el => {
-      el.classList.remove('om-invalid');
-      el.nextElementSibling.textContent = '';
-    });
-
-    if(!firstname.value.trim()){
-      firstname.classList.add('om-invalid');
-      firstname.nextElementSibling.textContent = 'First name is required.';
-      valid = false;
-    }
-    if(!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){
-      email.classList.add('om-invalid');
-      email.nextElementSibling.textContent = 'Please enter a valid email.';
-      valid = false;
-    }
-    if(!valid) return;
-
-    submitBtn.classList.add('om-loading');
-    submitBtn.querySelector('.om-submit-label').textContent = 'Submitting...';
-
-    const fields = [
-      { name: 'firstname', value: firstname.value.trim() },
-      { name: 'email',     value: email.value.trim() },
-    ];
-    const lastname = form.querySelector('[name="lastname"]');
-    if(lastname.value.trim()) fields.push({ name: 'lastname', value: lastname.value.trim() });
-    const phone = form.querySelector('[name="phone"]');
-    if(phone.value.trim()) fields.push({ name: 'phone', value: phone.value.trim() });
-
-    try {
-      const hutk = document.cookie.match(/hubspotutk=([^;]+)/)?.[1] || undefined;
-      const context = { pageUri: window.location.href, pageName: document.title };
-      if(hutk) context.hutk = hutk;
-
-      const res = await fetch(
-        `https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL}/${HS_FORM}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ fields, context })
-        }
-      );
-
-      if(res.ok){
-        window.location.href = 'https://whop.com/checkout/plan_rfyaNs2FN6PFE';
-      } else {
-        throw new Error('Server error');
-      }
-    } catch(err){
-      submitBtn.classList.remove('om-loading');
-      submitBtn.querySelector('.om-submit-label').textContent = 'Get Instant Access \u2014 $695';
-      email.classList.add('om-invalid');
-      email.nextElementSibling.textContent = 'Something went wrong. Please try again.';
-    }
-  });
-})();
 
 // ─── FAQ ───
 document.querySelectorAll('.faq-item').forEach(item=>{
