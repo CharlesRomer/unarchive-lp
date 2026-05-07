@@ -116,7 +116,18 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
+      padding: 0 16px;
     }
+    .bar-signin {
+      position: absolute; right: 16px;
+      font-family: 'Geist', sans-serif; font-size: 12px; font-weight: 500;
+      color: rgba(232,228,220,.5);
+      text-decoration: none;
+      letter-spacing: .02em;
+      transition: color .15s;
+    }
+    .bar-signin:hover { color: rgba(232,228,220,.9); }
+    @media(max-width:480px){ .bar-signin span { display:none; } }
     .bar-dot { width: 6px; height: 6px; border-radius: 50%; background: #FF4444; animation: pulse-dot 1.2s infinite; flex-shrink:0; }
     .bar-text { font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing:.1em; color: var(--dim); }
     .bar-timer {
@@ -1622,6 +1633,7 @@
   <span class="bar-text">Unarchive is live —</span>
   <span class="bar-timer" id="bar-timer">100 spots remaining at this price</span>
   <div class="bar-dot"></div>
+  <a href="https://app.unarchive.ai/login" class="bar-signin"><span>Already a member?&nbsp;</span>Sign in</a>
 </div>
 
 <!-- ─── HERO ─── -->
