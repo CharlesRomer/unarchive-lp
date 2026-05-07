@@ -120,14 +120,28 @@
     }
     .bar-signin {
       position: absolute; right: 16px;
-      font-family: 'Geist', sans-serif; font-size: 12px; font-weight: 500;
-      color: rgba(232,228,220,.5);
+      font-family: 'Geist', sans-serif; font-size: 12px; font-weight: 600;
+      color: rgba(232,228,220,.85);
       text-decoration: none;
       letter-spacing: .02em;
-      transition: color .15s;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 6px;
+      padding: 4px 12px;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
     }
-    .bar-signin:hover { color: rgba(232,228,220,.9); }
-    @media(max-width:480px){ .bar-signin span { display:none; } }
+    .bar-signin:hover { background: rgba(255,255,255,.14); color: #fff; }
+    .bar-center {
+      display: flex; align-items: center; gap: 10px;
+      overflow: hidden; white-space: nowrap;
+    }
+    @media(max-width:540px){
+      .bar-text { display: none; }
+      .bar-dot:first-child { display: none; }
+      .bar-timer { font-size: 10px; }
+      .bar-signin { font-size: 11px; padding: 3px 10px; }
+    }
     .bar-dot { width: 6px; height: 6px; border-radius: 50%; background: #FF4444; animation: pulse-dot 1.2s infinite; flex-shrink:0; }
     .bar-text { font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing:.1em; color: var(--dim); }
     .bar-timer {
@@ -1629,11 +1643,13 @@
 
 <!-- ─── URGENCY BAR ─── -->
 <div id="bar">
-  <div class="bar-dot"></div>
-  <span class="bar-text">Unarchive is live —</span>
-  <span class="bar-timer" id="bar-timer">100 spots remaining at this price</span>
-  <div class="bar-dot"></div>
-  <a href="https://app.unarchive.ai/login" class="bar-signin"><span>Already a member?&nbsp;</span>Sign in</a>
+  <div class="bar-center">
+    <div class="bar-dot"></div>
+    <span class="bar-text">Unarchive is live —</span>
+    <span class="bar-timer" id="bar-timer">100 spots at this price</span>
+    <div class="bar-dot"></div>
+  </div>
+  <a href="https://app.unarchive.ai/login" class="bar-signin">Sign in</a>
 </div>
 
 <!-- ─── HERO ─── -->
